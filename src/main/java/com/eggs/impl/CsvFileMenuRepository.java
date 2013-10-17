@@ -1,20 +1,21 @@
 package com.eggs.impl;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.eggs.Food;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.eggs.Menu;
 import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
 
 public class CsvFileMenuRepository implements MenuRepository {
 
+	private Logger logger = LoggerFactory.getLogger(CsvFileMenuRepository.class);
 	private List<Menu> menus = new ArrayList<Menu>();
 
 	public CsvFileMenuRepository(String ...restaurants) {
@@ -28,8 +29,11 @@ public class CsvFileMenuRepository implements MenuRepository {
 	}
 
 	private void processSingleRestaurant(String restaurant) {
+		logger.debug("processing next restaurant: {}", restaurant);
+		String filename = restaurant + ".csv";
+
 		try {
-			String filename = restaurant + ".csv";
+			logger.debug("restaurant is read from file: {}", filename);
 			
 			InputStream stream = getClass().getClassLoader().getSystemClassLoader().getResourceAsStream(filename);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
@@ -42,11 +46,13 @@ public class CsvFileMenuRepository implements MenuRepository {
 			menus.add(builder.build());
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Menu CSV file couldn't be processed: {}", filename);
+			logger.error("DETAILS", e);
 		}
 	}
 
 	private void processMenuLine(MenuBuilder builder, String line) {
+		logger.trace("processing line: {}", line);
 		String[] fields = line.split(",");
 		float price = Float.parseFloat(fields[2]);
 		builder.food(fields[0].trim(), fields[1].trim(),price);
