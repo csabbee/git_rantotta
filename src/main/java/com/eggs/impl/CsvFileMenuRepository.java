@@ -35,7 +35,7 @@ public class CsvFileMenuRepository implements MenuRepository {
 		try {
 			logger.debug("restaurant is read from file: {}", filename);
 			
-			InputStream stream = getClass().getClassLoader().getSystemClassLoader().getResourceAsStream(filename);
+			InputStream stream = getClass().getClassLoader().getResourceAsStream(filename);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 
 			MenuBuilder builder = MenuBuilder.menu().restaurant(restaurant);
