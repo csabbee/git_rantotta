@@ -19,10 +19,6 @@ public class CsvFileMenuPrinter implements MenuRepository {
 		
 		File folder = new File("./src/main/resources");
 		File[] listOfFiles = folder.listFiles();
-		for(File thereIsMore : listOfFiles){
-			System.out.format("%s%n", thereIsMore.getName());
-		}
-		
 		folder.delete();
 		//Building menus from every csv files found in the resources folder
 		for(File file : listOfFiles){
