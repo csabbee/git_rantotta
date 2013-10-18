@@ -7,6 +7,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.eggs.App;
 import com.eggs.Menu;
 import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
@@ -14,14 +18,16 @@ import com.eggs.MenuRepository;
 public class CsvFileMenuPrinter implements MenuRepository {
 	
 	private List<Menu> menus = new ArrayList<Menu>();
-	
+	private static Logger logger = LoggerFactory.getLogger(App.class);
 	public CsvFileMenuPrinter(String[] args){
 		
 		File folder = new File("./src/main/resources");
 		File[] listOfFiles = folder.listFiles();
 		folder.delete();
 		//Building menus from every csv files found in the resources folder
+		logger.info("Now entering resource folder file list parsing loop");
 		for(File file : listOfFiles){
+			logger.debug(file.getName());
 			if(file.getName().contains(".csv")){
 				try{
 					BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(file.getName())));
@@ -43,7 +49,9 @@ public class CsvFileMenuPrinter implements MenuRepository {
 			}
 		}
 		//Building menus from the csv files given as arguments
+		logger.info("Now entering the argument list parsing loop");
 		for(String file : args){
+			logger.debug(file);
 			try {
 				BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(file)));
 				String rest = file.replace(".csv", "");
