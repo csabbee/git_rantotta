@@ -6,12 +6,13 @@ import java.util.List;
 import com.eggs.Menu;
 import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
+import com.eggs.MenuRepositoryReader;
 
-public class InmemoryMenuRepository implements MenuRepository {
+public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
 
 	private List<Menu> menus = new ArrayList<Menu>();
 	
-	public InmemoryMenuRepository() {
+	public InmemoryMenuRepositoryReader() {
 		createFirstMenu();
 		createSecondMenu();
 	}
@@ -38,6 +39,10 @@ public class InmemoryMenuRepository implements MenuRepository {
 
 	public List<Menu> getAllmenu() {
 		return menus;
+	}
+
+	public MenuRepository read() {
+		return new MenuRepository(menus);
 	}
 
 }
