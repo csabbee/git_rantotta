@@ -1,5 +1,8 @@
 package com.eggs;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Food {
 
 	private String id;
@@ -7,10 +10,9 @@ public class Food {
 	private String description;
 	private float price;
 	private int calories;
-	
+	private static Logger logger = LoggerFactory.getLogger(Food.class);
 
 	public Food(String id, String name, float price, int calories) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -22,6 +24,7 @@ public class Food {
 	}
 
 	public void setId(String id) {
+		logger.info("In setId");
 		this.id = id;
 	}
 
@@ -30,6 +33,7 @@ public class Food {
 	}
 
 	public void setName(String name) {
+		logger.info("In setName");
 		this.name = name;
 	}
 
@@ -46,6 +50,7 @@ public class Food {
 	}
 
 	public void setPrice(float price) {
+		logger.info("In setPrice");
 		this.price = price;
 	}
 
@@ -62,7 +67,6 @@ public class Food {
 	}
 
 	public Food(String id, String name, float price) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;

@@ -15,7 +15,7 @@ public class ConsoleMenuPrinter extends MenuPrinter {
 	protected void printSingleMenu(Menu menu) {
 		System.out.format("%n=== %s ===%n", menu.getRestaurant().getName());
 		for (Food food : menu.getFoodList()) {
-			System.out.format(" - %-20s : %10.2f %n", food.getName(), food.getPrice());
+			System.out.format(" - %-4s %-20s : %10.2f %n", food.getId(),food.getName(), food.getPrice());
 		}
 	}
 
