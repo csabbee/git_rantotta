@@ -2,10 +2,10 @@ package com.eggs.impl;
 
 import com.eggs.Food;
 import com.eggs.Menu;
-import com.eggs.MenuPrinter;
+import com.eggs.BaseMenuPrinter;
 import com.eggs.MenuRepository;
 
-public class ConsoleMenuPrinter extends MenuPrinter {
+public class ConsoleMenuPrinter extends BaseMenuPrinter {
 	
 	public ConsoleMenuPrinter(MenuRepository menuRepository) {
 		super(menuRepository);
