@@ -62,4 +62,12 @@ public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
 		MenuRepository repo = new MenuRepository(menus);
 		return repo;
 	}
+	
+	public static void main(String[] args) {
+		CsvFileMenuRepositoryReader reader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
+		MenuRepository menuRepository = reader.read();
+		ConsoleMenuPrinter printer = new ConsoleMenuPrinter(menuRepository);
+		
+		printer.printMenus();
+	}
 }
