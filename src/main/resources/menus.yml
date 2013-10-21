@@ -1,0 +1,28 @@
+menus:
+  - restaurant:
+      name: karcsi bufeje
+    foods:
+        - id: k1
+          name: Pacal
+          price: 370
+        - id: k2
+          name: Palacsinta
+          price: 480
+        - id: k3
+          name: Bableves
+          price: 820
+        - id: k4
+          name: rantotta
+          price: 470
+  - restaurant:
+      name: Marcello
+    foods:
+        - id: m1
+          name: Margherita
+          price: 250
+        - id: m2
+          name: grilled cat
+          price: 890
+        - id: m3
+          name: ostriga
+          price: 1490
