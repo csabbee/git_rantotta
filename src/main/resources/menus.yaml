@@ -1,0 +1,25 @@
+---
+- restaurant: Karcsi
+ - foods:
+  - id: k1
+	name: tojas
+	price: 350
+  - id: k2
+	name: husleves
+	price: 450
+  - id: k3
+	name: fagylalt
+	price: 250
+---
+- restaurant: Mercello
+ - foods:
+  - id: m1
+    name: pizza
+	price: 550
+  - id: m2
+    name: tortilla
+	price: 450
+  - id: m3
+    name: duck
+	price: 1240
+---

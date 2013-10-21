@@ -9,7 +9,7 @@ public abstract class MenuPrinter {
 	}
 	
 	public void printMenus() {
-		for (Menu menu : menuRepository.getAllmenu()) {
+		for (Menu menu : menuRepository.getAllMenu()) {
 			printSingleMenu(menu);
 		}
 	}

@@ -1,5 +1,6 @@
 package com.eggs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,6 +8,14 @@ import java.util.List;
  * @author lalyos
  *
  */
-public interface MenuRepository {
-	List<Menu> getAllmenu();
+public class MenuRepository {
+	
+	private List<Menu> menus = new ArrayList<Menu>();
+	
+	public MenuRepository(List<Menu> menus){
+		this.menus = menus;
+	}
+	List<Menu> getAllMenu(){
+		return menus;
+	}
 }

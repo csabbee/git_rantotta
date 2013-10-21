@@ -14,12 +14,14 @@ import com.eggs.App;
 import com.eggs.Menu;
 import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
+import com.eggs.MenuRepositoryReader;
 
-public class CsvFileMenuPrinter implements MenuRepository {
+public class CsvFileMenuReader implements MenuRepositoryReader {
 	
 	private List<Menu> menus = new ArrayList<Menu>();
 	private static Logger logger = LoggerFactory.getLogger(App.class);
-	public CsvFileMenuPrinter(String[] args){
+	
+	public CsvFileMenuReader(String[] args){
 		
 		File folder = new File("./src/main/resources");
 		File[] listOfFiles = folder.listFiles();
@@ -74,5 +76,9 @@ public class CsvFileMenuPrinter implements MenuRepository {
 	}
 	public List<Menu> getAllmenu(){
 		return menus;
+	}
+	public MenuRepository read() {
+		// TODO Auto-generated method stub
+		return new MenuRepository(menus);
 	}
 }
