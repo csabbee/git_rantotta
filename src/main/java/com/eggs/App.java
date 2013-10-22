@@ -1,6 +1,9 @@
 package com.eggs;
 
+import java.util.logging.LogManager;
+
 import org.apache.log4j.Logger;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import com.eggs.impl.ConsoleMenuPrinter;
 import com.eggs.impl.CsvFileMenuRepositoryReader;
@@ -16,6 +19,11 @@ public class App {
 	}
 	
 	public static void main(String[] args) {
+
+		if (args.length > 1) {
+			SLF4JBridgeHandler.removeHandlersForRootLogger();
+			SLF4JBridgeHandler.install();
+		}
 		
 		String fileName = args[0];
 		logger.info("reading menu from:" + fileName);
