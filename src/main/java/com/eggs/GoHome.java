@@ -1,9 +1,14 @@
 package com.eggs;
 
+import java.io.IOException;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 
 public class GoHome {
 
@@ -12,18 +17,48 @@ public class GoHome {
     private static final String GOHOME_DATE_FORMAT = "gohome.date.format";
     private static final String GOHOME_PROPERTIES = "gohome.properties";
 
+    private ResourceBundle bundle = PropertyResourceBundle.getBundle("messages", Locale.getDefault());
+    private Properties props = new Properties();
+
+    public GoHome() {
+        try {
+            props.load(GoHome.class.getClassLoader().getResourceAsStream(GOHOME_PROPERTIES));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }        
+    }
+    
+    
     public static void main(String[] args) throws Exception {
-        
-        Properties props = new Properties();
-        props.load(GoHome.class.getClassLoader().getResourceAsStream(GOHOME_PROPERTIES));
-        
+        GoHome go = new GoHome();
+        go.printMessages();
+    }
+
+
+    private void printMessages() {
+        System.out.println(bundle.getString("gohome.welcome"));
+        System.out.println(getLocalSpecificMsg(bundle));
+        System.out.println(bundle.getString("gohome.bye"));
+    }
+
+    private String getLocalSpecificMsg(ResourceBundle bundle) {
+        MessageFormat fmt = new MessageFormat(bundle.getString("gohome.msg"));
+        Object[] objs = {getMinutesLeft()};
+        return fmt.format(objs);
+    }
+
+    private Long getMinutesLeft() {
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat(props.getProperty(GOHOME_DATE_FORMAT));
-        Date gohome = sdf.parse(props.getProperty(GOHOME_DATE));
-        
-        long minutes = (gohome.getTime() - now.getTime()) / 60000;      
-        String format = props.getProperty(GOHOME_MSG);
-        System.out.println(msg + minutes);
+        Date gohome = new Date();
+        try {
+            gohome = sdf.parse(props.getProperty(GOHOME_DATE));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Long minutes = (gohome.getTime() - now.getTime()) / 60000;
+        return minutes;
     }
 
 }
