@@ -3,16 +3,27 @@ package com.eggs;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 public class GoHome {
 
-    public static void main(String[] args) throws ParseException {
-        Date now = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date gohome = sdf.parse("2013-10-22 17:00");
+    private static final String GOHOME_MSG = "gohome.msg";
+    private static final String GOHOME_DATE = "gohome.date";
+    private static final String GOHOME_FORMAT = "gohome.format";
+    private static final String GOHOME_PROPERTIES = "gohome.properties";
+
+    public static void main(String[] args) throws Exception {
         
-        long minutes = (gohome.getTime() - now.getTime()) / 60000;        
-        System.out.println("minutes till gohome: " + minutes);
+        Properties props = new Properties();
+        props.load(GoHome.class.getClassLoader().getResourceAsStream(GOHOME_PROPERTIES));
+        
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat(props.getProperty(GOHOME_FORMAT));
+        Date gohome = sdf.parse(props.getProperty(GOHOME_DATE));
+        
+        long minutes = (gohome.getTime() - now.getTime()) / 60000;      
+        String msg = props.getProperty(GOHOME_MSG);
+        System.out.println(msg + minutes);
     }
 
 }
