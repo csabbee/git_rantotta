@@ -14,39 +14,38 @@ import com.eggs.MenuRepositoryReader;
 
 public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 
-	private String yamlFileName;
-	private Logger logger = Logger.getLogger(getClass().getName());
-	
-	public YamlFileMenuRepositoryReader(String yamlFileName) {
-		this.yamlFileName = yamlFileName;
-	}
-	
-	public MenuRepository read() {
-		logger.fine("read() started ..."); 
-		Constructor constructor = new Constructor(MenuRepository.class);
-		TypeDescription menuRepoDescription = new TypeDescription(MenuRepository.class);
-		menuRepoDescription.putListPropertyType("menus", Menu.class);
-		
-		TypeDescription menuDescription = new TypeDescription(Menu.class);
-		menuDescription.putListPropertyType("foods", Food.class);
+    private String yamlFileName;
+    private Logger logger = Logger.getLogger(getClass().getName());
 
-		constructor.addTypeDescription(menuRepoDescription);
-		constructor.addTypeDescription(menuDescription);
-		Yaml yaml = new Yaml(constructor);
-		
-		logger.info("reading YAML: " + yamlFileName);
-		InputStream stream = getClass().getClassLoader().getResourceAsStream(yamlFileName);
+    public YamlFileMenuRepositoryReader(String yamlFileName) {
+        this.yamlFileName = yamlFileName;
+    }
 
-		
-		MenuRepository menuRepo = (MenuRepository) yaml.load(stream);
-		
-		return menuRepo;
-	}
+    public MenuRepository read() {
+        logger.fine("read() started ...");
+        Constructor constructor = new Constructor(MenuRepository.class);
+        TypeDescription menuRepoDescription = new TypeDescription(MenuRepository.class);
+        menuRepoDescription.putListPropertyType("menus", Menu.class);
 
-	public static void main(String[] args) {
-		YamlFileMenuRepositoryReader reader = new YamlFileMenuRepositoryReader("menus.yml");
-		ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader.read());
-		
-		printer.printMenus();
-	}
+        TypeDescription menuDescription = new TypeDescription(Menu.class);
+        menuDescription.putListPropertyType("foods", Food.class);
+
+        constructor.addTypeDescription(menuRepoDescription);
+        constructor.addTypeDescription(menuDescription);
+        Yaml yaml = new Yaml(constructor);
+
+        logger.info("reading YAML: " + yamlFileName);
+        InputStream stream = getClass().getClassLoader().getResourceAsStream(yamlFileName);
+
+        MenuRepository menuRepo = (MenuRepository) yaml.load(stream);
+
+        return menuRepo;
+    }
+
+    public static void main(String[] args) {
+        YamlFileMenuRepositoryReader reader = new YamlFileMenuRepositoryReader("menus.yml");
+        ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader.read());
+
+        printer.printMenus();
+    }
 }

@@ -2,53 +2,53 @@ package com.eggs;
 
 public class Restaurant {
 
-	private String name;
-	private String url;
-	private Address address;
-	private Menu menu;
-	
-	public Restaurant() {
-	}
+    private String name;
+    private String url;
+    private Address address;
+    private Menu menu;
 
-	public Restaurant(String name) {
-		this.name = name;
-	}
+    public Restaurant() {
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Restaurant(String name) {
+        this.name = name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public Address getAddress() {
-		return address;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+    public Address getAddress() {
+        return address;
+    }
 
-	public Menu getMenu() {
-		return menu;
-	}
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-	public void setMenu(Menu menu) {
-		this.menu = menu;
-	}
+    public Menu getMenu() {
+        return menu;
+    }
 
-	@Override
-	public String toString() {
-		return  String.format("%s, %s", name , address);
-	}
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s", name, address);
+    }
 
 }

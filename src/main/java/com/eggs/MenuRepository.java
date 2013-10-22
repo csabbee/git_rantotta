@@ -5,25 +5,26 @@ import java.util.List;
 
 /**
  * This class maintains an immutable list of menus.
+ * 
  * @author lalyos
- *
+ * 
  */
 public class MenuRepository {
 
-	private List<Menu> menus = new ArrayList<Menu>();
+    private List<Menu> menus = new ArrayList<Menu>();
 
-	public MenuRepository() {}
+    public MenuRepository() {
+    }
 
-	public MenuRepository(List<Menu> menus) {
-		this.menus = menus;
-	}
-	
-	
-	public void setMenus(List<Menu> menus) {
-		this.menus = menus;
-	}
+    public MenuRepository(List<Menu> menus) {
+        this.menus = menus;
+    }
 
-	List<Menu> getAllmenu() {
-		return menus;
-	}
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
+    }
+
+    List<Menu> getAllmenu() {
+        return menus;
+    }
 }
