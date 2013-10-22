@@ -1,5 +1,9 @@
 package com.eggs;
-
+/**
+ * This class creates the menus for the restaurants
+ * @author Csaba_Valyi
+ *
+ */
 public class MenuBuilder {
 
 	private Menu menu = new Menu();

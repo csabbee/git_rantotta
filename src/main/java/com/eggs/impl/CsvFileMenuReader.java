@@ -14,7 +14,12 @@ import com.eggs.Menu;
 import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
-
+/**
+ * This class reads menus from csv files and give them to
+ * the MenuBuilder class to build menus
+ * @author Csaba_Valyi
+ *
+ */
 public class CsvFileMenuReader implements MenuRepositoryReader {
 	
 	private List<Menu> menus = new ArrayList<Menu>();

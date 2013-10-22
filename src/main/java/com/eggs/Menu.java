@@ -7,7 +7,11 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * This class represents the menu of a restaurant
+ * @author Csaba_Valyi
+ *
+ */
 public class Menu {
 	private static Logger logger = LoggerFactory.getLogger(Menu.class);
 	private Restaurant restaurant;

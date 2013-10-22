@@ -4,7 +4,11 @@ import com.eggs.Food;
 import com.eggs.Menu;
 import com.eggs.MenuPrinter;
 import com.eggs.MenuRepository;
-
+/**
+ * This class prints out a single menu to the console
+ * @author Csaba_Valyi
+ *
+ */
 public class ConsoleMenuPrinter extends MenuPrinter {
 	
 	public ConsoleMenuPrinter(MenuRepository menuRepository) {

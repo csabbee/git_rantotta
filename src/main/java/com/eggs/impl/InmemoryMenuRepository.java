@@ -7,7 +7,13 @@ import com.eggs.Menu;
 import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
-
+/**
+ * This is a burnt in MenuRepository, basically for
+ * testing purposes
+ * 
+ * @author Csaba_Valyi
+ *
+ */
 public class InmemoryMenuRepository implements MenuRepositoryReader {
 	
 	private List<Menu> menus = new ArrayList<Menu>();
@@ -42,7 +48,6 @@ public class InmemoryMenuRepository implements MenuRepositoryReader {
 	}
 
 	public MenuRepository read() {
-		// TODO Auto-generated method stub
 		return new MenuRepository(menus);
 	}
 

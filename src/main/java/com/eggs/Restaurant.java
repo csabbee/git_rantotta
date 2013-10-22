@@ -1,5 +1,9 @@
 package com.eggs;
-
+/**
+ * This class represents a restaurant
+ * @author Csaba_Valyi
+ *
+ */
 public class Restaurant {
 
 	private String name;

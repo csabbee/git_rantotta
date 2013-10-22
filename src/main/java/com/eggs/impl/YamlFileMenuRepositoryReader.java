@@ -15,6 +15,12 @@ import com.eggs.Menu;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
+/**
+ * This class reads menus from yaml files and give them
+ * to the MenuBuilder class to create menus 
+ * @author Csaba_Valyi
+ *
+ */
 public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 
 	private List<Menu> menus = new ArrayList<Menu>();
@@ -23,7 +29,7 @@ public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 	public YamlFileMenuRepositoryReader() {
 		logger.debug("In the constructor");
 		File file = new File("menus.yaml");
-		//Yaml
+
 		Constructor constructor = new Constructor(Menu.class);
 		TypeDescription menuDescription = new TypeDescription(Menu.class);
 		menuDescription.putListPropertyType("foods", Food.class);
@@ -37,7 +43,6 @@ public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 	}
 
 	public MenuRepository read() {
-		// TODO Auto-generated method stub
 		return new MenuRepository(menus);
 	}
 	

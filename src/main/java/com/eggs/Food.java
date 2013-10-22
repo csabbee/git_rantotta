@@ -2,7 +2,11 @@ package com.eggs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * This class represents food
+ * @author Csaba_Valyi
+ *
+ */
 public class Food {
 
 	private String id;
@@ -11,7 +15,6 @@ public class Food {
 	private float price;
 	private int calories;
 	private static Logger logger = LoggerFactory.getLogger(Food.class);
-
 	public Food(String id, String name, float price, int calories) {
 		this.id = id;
 		this.name = name;

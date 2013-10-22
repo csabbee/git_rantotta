@@ -1,5 +1,10 @@
 package com.eggs;
-
+/**
+ * This class prints out the content of the menus contained by
+ * the MenuRepository class
+ * @author Csaba_Valyi
+ *
+ */
 public abstract class MenuPrinter {
 	
 	private MenuRepository menuRepository;
