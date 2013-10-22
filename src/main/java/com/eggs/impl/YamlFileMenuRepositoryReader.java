@@ -1,6 +1,7 @@
 package com.eggs.impl;
 
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
@@ -14,12 +15,14 @@ import com.eggs.MenuRepositoryReader;
 public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 
 	private String yamlFileName;
+	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	public YamlFileMenuRepositoryReader(String yamlFileName) {
 		this.yamlFileName = yamlFileName;
 	}
 	
 	public MenuRepository read() {
+		logger.fine("read() started ..."); 
 		Constructor constructor = new Constructor(MenuRepository.class);
 		TypeDescription menuRepoDescription = new TypeDescription(MenuRepository.class);
 		menuRepoDescription.putListPropertyType("menus", Menu.class);
@@ -31,8 +34,10 @@ public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 		constructor.addTypeDescription(menuDescription);
 		Yaml yaml = new Yaml(constructor);
 		
+		logger.info("reading YAML: " + yamlFileName);
 		InputStream stream = getClass().getClassLoader().getResourceAsStream(yamlFileName);
 
+		
 		MenuRepository menuRepo = (MenuRepository) yaml.load(stream);
 		
 		return menuRepo;
