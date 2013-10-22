@@ -46,4 +46,9 @@ public class Restaurant {
 		this.menu = menu;
 	}
 
+	@Override
+	public String toString() {
+		return  String.format("%s, %s", name , address);
+	}
+
 }

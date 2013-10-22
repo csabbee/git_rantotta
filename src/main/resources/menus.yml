@@ -1,6 +1,10 @@
 menus:
   - restaurant:
       name: karcsi bufeje
+      address:
+        street: Futo utca 47
+        zip: 1082
+        city: Budapest
     foods:
         - id: k1
           name: Pacal
@@ -16,6 +20,10 @@ menus:
           price: 470
   - restaurant:
       name: Marcello
+      address:
+        street: Ferenc Korut 87
+        zip: 1056
+        city: Budapest
     foods:
         - id: m1
           name: Margherita

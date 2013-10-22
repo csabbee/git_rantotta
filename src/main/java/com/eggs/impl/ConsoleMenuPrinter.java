@@ -13,7 +13,7 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
 
 	@Override
 	protected void printSingleMenu(Menu menu) {
-		System.out.format("%n=== %s ===%n", menu.getRestaurant().getName());
+		System.out.format("%n=== %s ===%n", menu.getRestaurant().toString());
 		for (Food food : menu.getFoodList()) {
 			System.out.format(" - %-20s : %10.2f %n", food.getName(), food.getPrice());
 		}
