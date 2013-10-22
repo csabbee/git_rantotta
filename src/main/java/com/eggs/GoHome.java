@@ -10,17 +10,25 @@ import java.util.Properties;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class GoHome {
 
+    private Logger logger = LoggerFactory.getLogger(GoHome.class);
     private static final String GOHOME_MSG = "gohome.msg";
     private static final String GOHOME_DATE = "gohome.date";
     private static final String GOHOME_DATE_FORMAT = "gohome.date.format";
     private static final String GOHOME_PROPERTIES = "gohome.properties";
 
-    private ResourceBundle bundle = PropertyResourceBundle.getBundle("messages", Locale.getDefault());
+    private ResourceBundle bundle = PropertyResourceBundle.getBundle("messages", Locale.ENGLISH);
     private Properties props = new Properties();
 
     public GoHome() {
+        Locale locale = Locale.getDefault();
+        logger.info("default LOCAL: {}", locale);
+        
+        bundle = PropertyResourceBundle.getBundle("messages", locale);
         try {
             props.load(GoHome.class.getClassLoader().getResourceAsStream(GOHOME_PROPERTIES));
         } catch (IOException e) {
