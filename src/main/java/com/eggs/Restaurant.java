@@ -1,9 +1,13 @@
 package com.eggs;
 
+import javax.validation.Valid;
+
 public class Restaurant {
 
     private String name;
     private String url;
+    
+    @Valid
     private Address address;
     private Menu menu;
 

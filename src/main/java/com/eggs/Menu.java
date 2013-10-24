@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 public class Menu {
+    @Valid
     private Restaurant restaurant;
     private Map<String, Food> foodMap = new HashMap<String, Food>();
 
