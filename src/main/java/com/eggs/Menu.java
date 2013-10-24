@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 public class Menu {
     private Restaurant restaurant;
     private Map<String, Food> foodMap = new HashMap<String, Food>();
@@ -17,6 +19,7 @@ public class Menu {
         this.restaurant = restaurant;
     }
 
+    @Valid
     public List<Food> getFoodList() {
         ArrayList list = new ArrayList(foodMap.values());
         return list;
