@@ -11,6 +11,7 @@ import com.eggs.Food;
 import com.eggs.Menu;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
+import com.eggs.MenuValidator;
 
 public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 
@@ -33,13 +34,19 @@ public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
         constructor.addTypeDescription(menuRepoDescription);
         constructor.addTypeDescription(menuDescription);
         Yaml yaml = new Yaml(constructor);
-
         logger.info("reading YAML: " + yamlFileName);
         InputStream stream = getClass().getClassLoader().getResourceAsStream(yamlFileName);
 
         MenuRepository menuRepo = (MenuRepository) yaml.load(stream);
-
+        validateMenu(menuRepo);
+       
         return menuRepo;
+    }
+
+    private void validateMenu(MenuRepository menuRepo){
+        for(Menu m : menuRepo.getAllmenu()){
+            MenuValidator.validateMenu(m);
+        }
     }
 
     public static void main(String[] args) {

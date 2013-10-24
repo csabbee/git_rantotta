@@ -16,7 +16,8 @@ public class MenuBuilder {
         return this;
     }
 
-    public MenuBuilder food(String id, String name, float price) {
+    public MenuBuilder food(String id, String name, float price) throws FoodValidationException {
+        MenuValidator.validateFood(id, name, price);
         Food food = new Food(id, name, price);
         menu.addFood(food);
         return this;

@@ -1,5 +1,7 @@
 package com.eggs;
 
+import org.hibernate.validator.constraints.Length;
+
 public class Address {
     private String street;
     private String city;
@@ -20,7 +22,7 @@ public class Address {
     public void setCity(String city) {
         this.city = city;
     }
-
+    @Length(min=4,max=4)
     public String getZip() {
         return zip;
     }

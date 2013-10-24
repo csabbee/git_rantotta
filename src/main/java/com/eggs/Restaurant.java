@@ -1,7 +1,12 @@
 package com.eggs;
 
-public class Restaurant {
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
+public class Restaurant {
+    @NotNull @Length(min=5, max=25)
     private String name;
     private String url;
     private Address address;
@@ -29,7 +34,7 @@ public class Restaurant {
     public void setUrl(String url) {
         this.url = url;
     }
-
+    @Valid
     public Address getAddress() {
         return address;
     }

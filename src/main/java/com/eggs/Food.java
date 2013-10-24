@@ -1,10 +1,19 @@
 package com.eggs;
 
-public class Food {
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+
+public class Food {
+    @NotNull @Length(min=2)
     private String id;
+    
+    @NotNull @Length(min=3, max=15)
     private String name;
     private String description;
+    
+    @Range(min=0, max=100000)
     private float price;
     private int calories;
 

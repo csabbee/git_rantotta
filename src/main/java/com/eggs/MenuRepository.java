@@ -24,7 +24,7 @@ public class MenuRepository {
         this.menus = menus;
     }
 
-    List<Menu> getAllmenu() {
+    public List<Menu> getAllmenu() {
         return menus;
     }
 }
