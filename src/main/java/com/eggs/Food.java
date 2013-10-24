@@ -1,11 +1,23 @@
 package com.eggs;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+
 public class Food {
 
+    @NotNull @Length(min=2,message="id should be at least 2")
     private String id;
+    
+    @NotNull @Length(min=3, max=15, message="name should be minimum 3 max 15 characters")
     private String name;
+    
     private String description;
+    
+    @Range(min=0, max=100000, message="price should be in the range of [0,10000]")
     private float price;
+    
     private int calories;
 
     public Food(String id, String name, float price, int calories) {
