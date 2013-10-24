@@ -1,22 +1,27 @@
 package com.eggs;
 
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Path;
+import javax.validation.Validation;
+import javax.validation.Validator;
+
 public class FoodValidator {
 
+    private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+    
     public static void validateFood(String id, String name, float price) {
-        if (id == null || id.length() < 2) {
-            throw new FoodValidationException("id", "id should be at least 2 characters");
-        }
-        
-        if (name == null || name.length() < 3) {
-            throw new FoodValidationException("name", "name should be at least 3 characters");            
-        }
-        
-        if (price < 0) {
-            throw new FoodValidationException("price", "price should be at least 0");
-        }
+        validateFood(new Food(id,name,price));
     }
 
     public static void validateFood(Food food) {
-        validateFood(food.getId(), food.getName(), food.getPrice());
+        Set<ConstraintViolation<Food>> validations = validator.validate(food);
+        if (! validations.isEmpty()) {
+            ConstraintViolation<Food> firstError = validations.iterator().next();
+            String message = firstError.getMessage();
+            String field = firstError.getPropertyPath().toString();
+            throw new FoodValidationException(field, message);
+        }
     }
 }
