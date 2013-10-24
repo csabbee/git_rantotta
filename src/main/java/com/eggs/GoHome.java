@@ -20,21 +20,23 @@ public class GoHome {
     private static final String GOHOME_DATE = "gohome.date";
     private static final String GOHOME_DATE_FORMAT = "gohome.date.format";
     private static final String GOHOME_PROPERTIES = "gohome.properties";
+    private static final String GOHOME_LANG = "gohome.lang";
 
     private ResourceBundle bundle = PropertyResourceBundle.getBundle("messages", Locale.ENGLISH);
     private Properties props = new Properties();
 
     public GoHome() {
-        Locale locale = Locale.getDefault();
-        logger.info("default LOCAL: {}", locale);
-        
-        bundle = PropertyResourceBundle.getBundle("messages", locale);
+
         try {
             props.load(GoHome.class.getClassLoader().getResourceAsStream(GOHOME_PROPERTIES));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }        
+        Locale locale = new Locale(props.getProperty(GOHOME_LANG));
+        logger.info("choosen locale: {}", locale);
+        
+        bundle = PropertyResourceBundle.getBundle("messages", locale);
     }
     
     
