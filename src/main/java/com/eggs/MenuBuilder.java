@@ -17,6 +17,7 @@ public class MenuBuilder {
     }
 
     public MenuBuilder food(String id, String name, float price) {
+        FoodValidator.validateFood(id, name, price);
         Food food = new Food(id, name, price);
         menu.addFood(food);
         return this;

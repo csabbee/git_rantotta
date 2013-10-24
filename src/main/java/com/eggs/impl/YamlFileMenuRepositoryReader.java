@@ -8,6 +8,7 @@ import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
 import com.eggs.Food;
+import com.eggs.FoodValidator;
 import com.eggs.Menu;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
@@ -39,7 +40,16 @@ public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 
         MenuRepository menuRepo = (MenuRepository) yaml.load(stream);
 
+        validateMenu(menuRepo);
         return menuRepo;
+    }
+
+    private void validateMenu(MenuRepository menuRepo) {
+        for (Menu menu : menuRepo.getAllmenu()) {
+            for (Food food : menu.getFoodList()) {
+                FoodValidator.validateFood(food);
+            }
+        }
     }
 
     public static void main(String[] args) {
