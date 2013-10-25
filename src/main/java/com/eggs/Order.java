@@ -16,7 +16,17 @@ public class Order {
     private String customer;
     private Address deliveryAddress;
     private List<OrderItem> orders = new ArrayList<OrderItem>();
+    private String id;
+    
+    public String getId() {
+        return id;
+    }
 
+    private static long nextId = 0;
+    public Order() {
+        id = Long.toString(nextId++);
+    }
+    
     @NotNull @Length(min=3)
     public String getCustomer() {
         return customer;
