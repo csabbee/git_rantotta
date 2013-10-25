@@ -17,7 +17,7 @@ menus:
           price: 820
         - id: k4
           name: rantotta
-          price: -470
+          price: 470
   - restaurant:
       name: Marcello
       address:
