@@ -9,22 +9,21 @@ import org.hibernate.validator.constraints.Length;
  *
  */
 public class OrderItem {
+    @NotNull
     private int quantity;
+    @NotNull @Length(min=2,max=3)
     private String foodId;
     
     public OrderItem(String foodId, int quantity) {
         this.quantity = quantity;
         this.foodId = foodId;
     }
-    
-    @NotNull
     public int getQuantity() {
         return quantity;
     }
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    @NotNull @Length(min=2,max=3)
     public String getFoodId() {
         return foodId;
     }
