@@ -34,7 +34,7 @@ public class OrderTaker {
     }
     private OrderItem pickRandomFood(Menu menu){
         logger.info("pickRandomFood method started");
-        OrderItem oi = new OrderItem(menu.getFoodList().get((int)(random.nextDouble()*menu.getFoodList().size())).getId(), (int)((random.nextDouble()+1)*5));
+        OrderItem oi = new OrderItem(menu.getFoodList().get((int)(random.nextDouble()*menu.getFoodList().size())).getId(), (int)((random.nextDouble())*5));
         System.out.format("id: %s quantity: %d%n", oi.getFoodId(), oi.getQuantity());
         logger.debug("OrderItem created");
         return oi;

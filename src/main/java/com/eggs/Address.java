@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.Length;
 public class Address {
     private String street;
     private String city;
-    @Length(min=4, max=4)
+    @Length(min=4, max=4, message="zip's length must be 4")
     private String zip;
 
     public Address(){
