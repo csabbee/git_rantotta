@@ -23,7 +23,6 @@ public class OrderBuilder {
     }
     
     public Order build(){
-        OrderValidator.validateOrder(order);
         return this.order;
     }
 }
