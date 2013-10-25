@@ -6,7 +6,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
-public class MenuValidator {
+public class AllAroundValidator {
 
     private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     
@@ -24,4 +24,7 @@ public class MenuValidator {
         validateObject(menu);
     }
 
+    public static void validateOrder(OrderInstance order){
+        validateObject(order);
+    }
 }

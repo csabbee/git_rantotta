@@ -23,7 +23,7 @@ public class MenuBuilder {
     }
 
     public Menu build() {
-        MenuValidator.validateMenu(menu);
+        AllAroundValidator.validateMenu(menu);
         return menu;
     }
 }
