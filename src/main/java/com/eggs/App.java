@@ -1,6 +1,8 @@
 package com.eggs;
 
-import java.util.logging.LogManager;
+import java.io.Console;
+import java.io.IOException;
+import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
@@ -18,7 +20,7 @@ public class App {
         printer.printMenus();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         if (args.length > 1) {
             SLF4JBridgeHandler.removeHandlersForRootLogger();
@@ -26,12 +28,16 @@ public class App {
         }
 
         String fileName = args[0];
-        logger.info("reading menu from:" + fileName);
-
-        CsvFileMenuRepositoryReader csvReader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
-        YamlFileMenuRepositoryReader yamlReader = new YamlFileMenuRepositoryReader(fileName);
-
-        printReader(csvReader);
-        printReader(yamlReader);
+        
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.nextLine().charAt(0) != 'q') {
+            logger.info("reading menu from:" + fileName);
+    
+            CsvFileMenuRepositoryReader csvReader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
+            YamlFileMenuRepositoryReader yamlReader = new YamlFileMenuRepositoryReader(fileName);
+    
+            printReader(csvReader);
+            printReader(yamlReader);
+        }
     }
 }
