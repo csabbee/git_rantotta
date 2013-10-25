@@ -1,5 +1,6 @@
 package com.eggs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,7 +16,7 @@ public class OrderInstance {
     @NotNull @Length(min=10,max=40)
     private String customer;
     private Address delivery;
-    private List<OrderItem> item;
+    private List<OrderItem> item = new ArrayList<OrderItem>();
     
     public OrderInstance(String customer, Address delivery) {
         this.customer = customer;
