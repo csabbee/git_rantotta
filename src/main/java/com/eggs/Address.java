@@ -8,6 +8,9 @@ public class Address {
     @Length(min=4, max=4)
     private String zip;
 
+    public Address(){
+        
+    }
     public Address(String street, String city, String zip) {
         this.street = street;
         this.city = city;
