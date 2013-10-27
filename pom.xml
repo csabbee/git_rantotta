@@ -3,59 +3,71 @@
   <groupId>com.eggs</groupId>
   <artifactId>breakfast</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <dependencies>
+
+<repositories>
+  <repository>
+    <id>csabi_valyi-repository</id>
+        <url>https://github.com/csabivalyi/csabi-mvn-repo/raw/master</url>
+  </repository>
+</repositories>
+
+<dependencies>
   <dependency>
 	<groupId>org.yaml</groupId>
 	<artifactId>snakeyaml</artifactId>
 	<version>1.13</version>
-</dependency>
-<dependency>
+  </dependency>
+  <dependency>
+	<groupId>com.gtranslate</groupId>
+    <artifactId>gtranslator</artifactId>
+    <version>1.0</version>
+  </dependency>
+  <dependency>
 	<groupId>org.hibernate</groupId>
 	<artifactId>hibernate-core</artifactId>
 	<version>4.2.6.Final</version>
-</dependency>
-            
-<dependency>
+  </dependency>
+  <dependency>
 	<groupId>org.slf4j</groupId>
 	<artifactId>log4j-over-slf4j</artifactId>
 	<version>1.7.5</version>
-</dependency>
-<dependency>
+  </dependency>
+  <dependency>
 	<groupId>org.slf4j</groupId>
 	<artifactId>jul-to-slf4j</artifactId>
 	<version>1.7.5</version>
-</dependency>
+  </dependency>
   <dependency>
 	<groupId>ch.qos.logback</groupId>
 	<artifactId>logback-classic</artifactId>
 	<version>1.0.13</version>
   </dependency>
-<dependency>
+  <dependency>
 	<groupId>org.hibernate</groupId>
 	<artifactId>hibernate-validator</artifactId>
 	<version>4.2.0.Final</version>
-</dependency>
-<dependency>
+  </dependency>
+  <dependency>
 	<groupId>org.hibernate.common</groupId>
 	<artifactId>hibernate-commons-annotations</artifactId>
 	<version>4.0.4.Final</version>
-</dependency>
-                        
-  </dependencies>
-  <build>
-  <plugins>
+  </dependency>
+</dependencies>
+
+<build>
+ <plugins>
   <plugin>
   	<groupId>org.codehaus.mojo</groupId>
     <artifactId>exec-maven-plugin</artifactId>
     <version>1.2.1</version>
     <configuration>
-    	  <mainClass>com.eggs.App</mainClass>
-    	  <systemProperties>
-    	    <systemProperty>
-           <key>java.util.logging.config.file</key>
-           <value>src/main/resources/logging.properties</value>
-         </systemProperty>
-    	  </systemProperties>
+      <mainClass>com.eggs.App</mainClass>
+        <systemProperties>
+    	  <systemProperty>
+            <key>java.util.logging.config.file</key>
+            <value>src/main/resources/logging.properties</value>
+          </systemProperty>
+        </systemProperties>
     </configuration>
   </plugin>
   <plugin>
@@ -63,11 +75,12 @@
   	<artifactId>maven-jar-plugin</artifactId>
   	<version>2.4</version>
   	<configuration>
-  	<archive>
-            <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-          </archive>
+  	  <archive>
+        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+      </archive>
   	</configuration>
   </plugin>
-  </plugins>
-  </build>
+ </plugins>
+</build>
+
 </project>
