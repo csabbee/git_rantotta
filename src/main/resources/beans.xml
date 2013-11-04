@@ -8,7 +8,37 @@
 		<constructor-arg value="karcsi"/>
 	</bean>
 	
-	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader"></bean>
+	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader">
+	 	<property name="menus">
+	 		<list>
+	 			<ref bean="menu1"/>
+	 		</list>
+	 	</property>
+	</bean>
+	
+	<bean id="menu1" class="com.eggs.Menu">
+		<property name="foodList">
+		<list>
+			<bean class="com.eggs.Food">
+				<property name="id" value="h1"/>
+				<property name="name" value="Hagymas bab"/>
+				<property name="price" value="780"/>
+			</bean>
+			<bean class="com.eggs.Food">
+				<property name="id" value="h2"/>
+				<property name="name" value="Krumplis Hal" />
+				<property name="price" value="1190"/>
+			</bean>
+		</list>
+		</property>
+		<property name="restaurant">
+			<bean class="com.eggs.Restaurant">
+			   <property name="name" value="Karcsi Bufe"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	
 	
 	<bean id="printer" class="com.eggs.impl.ConsoleMenuPrinter">
 		<constructor-arg ref="memoryReader"/>
