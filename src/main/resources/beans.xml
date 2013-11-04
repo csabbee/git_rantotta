@@ -5,10 +5,10 @@
 
 
 	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader">
-		<constructor-arg value="karcsi"></constructor-arg>
+		<constructor-arg value="karcsi"/>
 	</bean>
 	
 	<bean id="printer" class="com.eggs.impl.ConsoleMenuPrinter">
-		<constructor-arg ref="repoReader"></constructor-arg>
+		<constructor-arg ref="repoReader"/>
 	</bean>
 </beans>
