@@ -4,11 +4,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader">
+	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" >
 		<constructor-arg value="karcsi"/>
 	</bean>
 	
+	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader"></bean>
+	
 	<bean id="printer" class="com.eggs.impl.ConsoleMenuPrinter">
-		<constructor-arg ref="repoReader"/>
+		<constructor-arg ref="memoryReader"/>
 	</bean>
+	
+	
 </beans>

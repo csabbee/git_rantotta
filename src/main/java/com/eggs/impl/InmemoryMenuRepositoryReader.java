@@ -13,8 +13,8 @@ public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
     private List<Menu> menus = new ArrayList<Menu>();
 
     public InmemoryMenuRepositoryReader() {
-        createFirstMenu();
-        createSecondMenu();
+        //createFirstMenu();
+        //createSecondMenu();
     }
 
     private void createFirstMenu() {
@@ -35,6 +35,14 @@ public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
 
     public MenuRepository read() {
         return new MenuRepository(menus);
+    }
+
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
     }
 
 }
