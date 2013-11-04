@@ -16,7 +16,12 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
 
     @Override
     protected void printSingleMenu(Menu menu) {
-        System.out.format("%n%n< %s >%n", menu.getRestaurant().getName());
+        String name = menu.getRestaurant().getName();
+        String fmt = "%-"+ (name.length() + 2 ) + "s";
+        String padded = " " + String.format(fmt, "-").replace(" ", "-");
+        System.out.println(padded);
+        System.out.format("< %s >%n", name);       
+        System.out.println(padded);
         System.out.println("        \\   ^__^");
         System.out.println("         \\  (oo)\\_______");
         System.out.println("            (__)\\       )\\/\\");
