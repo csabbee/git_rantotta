@@ -23,7 +23,8 @@
 	<bean id="address" class="com.eggs.Address"  p:city="Budpest" p:zip="1082" p:street="Futo utca 47."/>
 	
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="headers" />
-	<bean id="printer" class="com.eggs.impl.ConsoleMenuPrinter" init-method="init" />
+	<bean class="com.eggs.impl.ConsoleMenuPrinter" init-method="init" autowire-candidate="false" />
+	<bean class="com.eggs.impl.AsciiArtPrinter" init-method="init" p:font="moscow"/>
 	
 	
 </beans>
