@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
@@ -19,25 +20,16 @@
 	<bean id="menu1" class="com.eggs.Menu">
 		<property name="foodList">
 		<list>
-			<bean class="com.eggs.Food">
-				<property name="id" value="h1"/>
-				<property name="name" value="Hagymas bab"/>
-				<property name="price" value="780"/>
-			</bean>
-			<bean class="com.eggs.Food">
-				<property name="id" value="h2"/>
-				<property name="name" value="Krumplis Hal" />
-				<property name="price" value="1190"/>
-			</bean>
+			<bean class="com.eggs.Food" p:id="h1" p:name="Hagymas bab" p:price="780" />
+			<bean class="com.eggs.Food" p:id="h2" p:name="Krumplis Hal" p:price="1190" />
 		</list>
 		</property>
 		<property name="restaurant">
-			<bean class="com.eggs.Restaurant">
-			   <property name="name" value="Karcsi Bufe"></property>
-			</bean>
+			<bean class="com.eggs.Restaurant" p:name="Karcsi Bufe"  p:address-ref="epamAddress" />
 		</property>
 	</bean>
 	
+	<bean id="epamAddress" class="com.eggs.Address"  p:city="Budpest" p:zip="1082" p:street="Futo utca 47."/>
 	
 	
 	<bean id="printer" class="com.eggs.impl.ConsoleMenuPrinter">
