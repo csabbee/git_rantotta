@@ -42,12 +42,6 @@ public class App {
         MenuPrinter printer = ctx.getBean(MenuPrinter.class);
         printer.printMenus();
         
-        String[] beanNamse = ctx.getBeanDefinitionNames();
-        for (String name : beanNamse) {
-            
-            System.out.println("bean name:" + name);
-            
-        }
 //        CsvFileMenuRepositoryReader csvReader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
 //        YamlFileMenuRepositoryReader yamlReader = new YamlFileMenuRepositoryReader(fileName);
 //
