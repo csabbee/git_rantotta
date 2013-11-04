@@ -22,7 +22,7 @@ public class Menu {
         return list;
     }
 
-    public void setFoods(List<Food> foodList) {
+    public void setFoodList(List<Food> foodList) {
         for (Food food : foodList) {
             addFood(food);
         }
