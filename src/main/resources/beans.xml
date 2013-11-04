@@ -2,12 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" >
-		<constructor-arg value="karcsi"/>
-	</bean>
+	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" c:restaurantNames="karcsi" />
 	
 	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader">
 	 	<property name="menus">
