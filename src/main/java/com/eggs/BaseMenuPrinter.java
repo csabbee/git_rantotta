@@ -2,10 +2,17 @@ package com.eggs;
 
 public abstract class BaseMenuPrinter implements MenuPrinter {
 
-    private final MenuRepository menuRepository;
+    private MenuRepository menuRepository;
 
     public BaseMenuPrinter(MenuRepository menuRepository) {
         this.menuRepository = menuRepository;
+    }
+
+    public void setReader(MenuRepositoryReader reader) {
+        this.menuRepository = reader.read();
+    }
+    public BaseMenuPrinter() {
+        // TODO Auto-generated constructor stub
     }
 
     /*

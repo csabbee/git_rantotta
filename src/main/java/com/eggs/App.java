@@ -32,11 +32,17 @@ public class App {
         String fileName = args[0];
         logger.info("reading menu from:" + fileName);
 
-        BeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
+        ListableBeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
         
         MenuPrinter printer = factory.getBean(MenuPrinter.class);
         printer.printMenus();
         
+        String[] beanNamse = factory.getBeanDefinitionNames();
+        for (String name : beanNamse) {
+            
+            System.out.println("bean name:" + name);
+            
+        }
 //        CsvFileMenuRepositoryReader csvReader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
 //        YamlFileMenuRepositoryReader yamlReader = new YamlFileMenuRepositoryReader(fileName);
 //

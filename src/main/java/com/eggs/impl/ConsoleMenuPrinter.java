@@ -8,6 +8,9 @@ import com.eggs.MenuRepositoryReader;
 
 public class ConsoleMenuPrinter extends BaseMenuPrinter {
 
+    public ConsoleMenuPrinter() {
+        super();
+    }
     public ConsoleMenuPrinter(MenuRepositoryReader reader) {
         super(reader.read());
     }
