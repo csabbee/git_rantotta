@@ -3,30 +3,27 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:c="http://www.springframework.org/schema/c"
-	default-autowire="byName"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd"
+
+    default-autowire="byType" >
 
 
-	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" c:restaurantNames="karcsi,marcello" />
+	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" c:restaurantNames="karcsi,marcello" autowire-candidate="false" />
 	
-	<bean id="memoryReader" name="reader" class="com.eggs.impl.InmemoryMenuRepositoryReader"   />
+	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader"   />
 
-	<util:list id="menus" >
-		<bean class="com.eggs.Menu" p:restaurant-ref="karcsi" />
-    </util:list>	
+    <bean class="com.eggs.Menu" p:restaurant-ref="karcsi" />
 
-	<util:list id="foodList" >
-      <bean name="f1" class="com.eggs.Food" p:id="h1" p:name="Hagymas bab" p:price=" 780" />
-      <bean id="id2" name="f2,hal"  class="com.eggs.Food" p:id="h2" p:name="Krumplis Hal" p:price="1190" />		
-	</util:list>
+    <bean name="f1" class="com.eggs.Food" p:id="h1" p:name="Hagymas bab" p:price=" 780" />
+    <bean id="id2" name="f2,hal"  class="com.eggs.Food" p:id="h2" p:name="Krumplis Hal" p:price="1190" />		
 	
-	<bean id="karcsi" name="restaurant" class="com.eggs.Restaurant" p:name="Karcsi Bufe"  />
+	<bean id="karcsi" class="com.eggs.Restaurant" p:name="Karcsi Bufe"  />
 	<bean id="address" class="com.eggs.Address"  p:city="Budpest" p:zip="1082" p:street="Futo utca 47."/>
 	
 	
-	<bean id="printer" class="com.eggs.impl.ConsoleMenuPrinter" />
+	<bean id="printer" class="com.eggs.impl.ConsoleMenuPrinter" init-method="init" />
 	
 	
 </beans>

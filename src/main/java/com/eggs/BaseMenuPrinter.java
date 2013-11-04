@@ -3,13 +3,18 @@ package com.eggs;
 public abstract class BaseMenuPrinter implements MenuPrinter {
 
     private MenuRepository menuRepository;
+    private MenuRepositoryReader reader;
 
     public BaseMenuPrinter(MenuRepository menuRepository) {
         this.menuRepository = menuRepository;
     }
 
+    public void init() {
+        menuRepository = reader.read();
+    }
+    
     public void setReader(MenuRepositoryReader reader) {
-        this.menuRepository = reader.read();
+        this.reader = reader;
     }
     public BaseMenuPrinter() {
         // TODO Auto-generated constructor stub
