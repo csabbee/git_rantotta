@@ -9,16 +9,21 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.core.io.Resource;
 
 import com.eggs.Menu;
 import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
-public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
+public class CsvFileMenuRepositoryReader implements MenuRepositoryReader, ApplicationContextAware {
 
     private Logger logger = LoggerFactory.getLogger(CsvFileMenuRepositoryReader.class);
     private String[] restaurantNames;
+    private ApplicationContext ctx;
 
     public CsvFileMenuRepositoryReader(String... restaurantNames) {
         this.restaurantNames = restaurantNames;
@@ -29,18 +34,25 @@ public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
         String filename = restaurant + ".csv";
         logger.debug("restaurant is read from file: {}", filename);
 
-        InputStream stream = getClass().getClassLoader().getResourceAsStream(filename);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-
         MenuBuilder builder = MenuBuilder.menu().restaurant(restaurant);
-        String line = "";
+
+        Resource file = ctx.getResource(filename);
+        BufferedReader reader;
         try {
-            while ((line = reader.readLine()) != null) {
-                processMenuLine(builder, line);
+            reader = new BufferedReader(new InputStreamReader(file.getInputStream()));
+            String line = "";
+            try {
+                while ((line = reader.readLine()) != null) {
+                    processMenuLine(builder, line);
+                }
+            } catch (IOException e) {
+                logger.error("couldnt process LINE: " + line, e);
             }
-        } catch (IOException e) {
-            logger.error("couldnt process LINE: " + line, e);
-        }
+
+        } catch (IOException e1) {
+            logger.error("Resource Error: ", e1);
+        }        
+
         return builder.build();
     }
 
@@ -68,5 +80,10 @@ public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
         ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader);
 
         printer.printMenus();
+    }
+
+    public void setApplicationContext(ApplicationContext ctx) throws BeansException {
+        this.ctx = ctx;
+        
     }
 }

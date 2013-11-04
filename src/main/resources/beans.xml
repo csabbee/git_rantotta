@@ -10,9 +10,9 @@
     default-autowire="byType" >
 
 
-	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" c:restaurantNames="karcsi,marcello" autowire-candidate="false" />
+	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" c:restaurantNames="karcsi,marcello" />
 	
-	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader"   />
+	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader" autowire-candidate="false"   />
 
     <bean class="com.eggs.Menu" p:restaurant-ref="karcsi" />
 

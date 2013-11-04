@@ -12,7 +12,6 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
         super();
     }
     public ConsoleMenuPrinter(MenuRepositoryReader reader) {
-        super(reader.read());
     }
 
     @Override
