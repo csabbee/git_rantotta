@@ -1,13 +1,20 @@
 package com.eggs.impl;
 
+import java.util.Locale;
+
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
 import com.eggs.Food;
 import com.eggs.Menu;
 import com.eggs.BaseMenuPrinter;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
-public class ConsoleMenuPrinter extends BaseMenuPrinter {
+public class ConsoleMenuPrinter extends BaseMenuPrinter implements ApplicationContextAware {
 
+    private ApplicationContext ctx;
     public ConsoleMenuPrinter() {
         super();
     }
@@ -29,11 +36,20 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
         System.out.println("                ||     ||");
         
         System.out.format(String.format(" %-20s---%10s %n", "-", "-").replace(" ", "-"));
-        System.out.format(" %-20s | %10s %n", "NAME", "PRICE");
+        
+        
+        String nameHeader = ctx.getMessage("header.name", new Object[0], Locale.getDefault());
+        String priceHeader = ctx.getMessage("header.price", new Object[0],  Locale.getDefault());
+        
+        System.out.format(" %-20s | %10s %n", nameHeader, priceHeader);
         
         for (Food food : menu.getFoodList()) {
             System.out.format(" %-20s | %10.2f %n", food.getName(), food.getPrice());
         }
+    }
+    public void setApplicationContext(ApplicationContext ctx) throws BeansException {
+        this.ctx = ctx;
+        
     }
 
 }
