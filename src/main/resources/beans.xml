@@ -3,30 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:c="http://www.springframework.org/schema/c"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byType">
 
 
 	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" c:restaurantNames="karcsi" />
 	
-	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader">
-	 	<property name="menus">
-	 		<list>
-	 			<ref bean="menu1"/>
-	 		</list>
-	 	</property>
-	</bean>
+	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader" />
 	
-	<bean id="menu1" class="com.eggs.Menu" p:restaurant-ref="karcsi">
-		<property name="foodList">
-		<list>
-			<bean class="com.eggs.Food" p:id="h1" p:name="Hagymas bab" p:price="780" />
-			<bean class="com.eggs.Food" p:id="h2" p:name="Krumplis Hal" p:price="1190" />
-		</list>
-		</property>
-	</bean>
+	<bean id="menu1" class="com.eggs.Menu" p:restaurant-ref="karcsi" />
+
+    <bean class="com.eggs.Food" p:id="h1" p:name="Hagymas bab" p:price=" 780" />
+    <bean class="com.eggs.Food" p:id="h2" p:name="Krumplis Hal" p:price="1190" />
 	
-	<bean id="karcsi" class="com.eggs.Restaurant" p:name="Karcsi Bufe"  p:address-ref="epamAddress" />
-	<bean id="epamAddress" class="com.eggs.Address"  p:city="Budpest" p:zip="1082" p:street="Futo utca 47."/>
+	<bean id="karcsi" class="com.eggs.Restaurant" p:name="Karcsi Bufe"  />
+	<bean id="address" class="com.eggs.Address"  p:city="Budpest" p:zip="1082" p:street="Futo utca 47."/>
 	
 	
 	<bean id="printer" class="com.eggs.impl.ConsoleMenuPrinter">
