@@ -4,11 +4,12 @@ import com.eggs.Food;
 import com.eggs.Menu;
 import com.eggs.BaseMenuPrinter;
 import com.eggs.MenuRepository;
+import com.eggs.MenuRepositoryReader;
 
 public class ConsoleMenuPrinter extends BaseMenuPrinter {
 
-    public ConsoleMenuPrinter(MenuRepository menuRepository) {
-        super(menuRepository);
+    public ConsoleMenuPrinter(MenuRepositoryReader reader) {
+        super(reader.read());
     }
 
     @Override

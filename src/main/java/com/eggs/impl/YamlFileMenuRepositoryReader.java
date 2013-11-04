@@ -44,7 +44,7 @@ public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 
     public static void main(String[] args) {
         YamlFileMenuRepositoryReader reader = new YamlFileMenuRepositoryReader("menus.yml");
-        ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader.read());
+        ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader);
 
         printer.printMenus();
     }

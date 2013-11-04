@@ -4,6 +4,9 @@ import java.util.logging.LogManager;
 
 import org.apache.log4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
 
 import com.eggs.impl.ConsoleMenuPrinter;
 import com.eggs.impl.CsvFileMenuRepositoryReader;
@@ -13,7 +16,7 @@ public class App {
     private static Logger logger = Logger.getLogger(App.class);
 
     private static void printReader(MenuRepositoryReader reader) {
-        ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader.read());
+        ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader);
 
         printer.printMenus();
     }
@@ -28,10 +31,14 @@ public class App {
         String fileName = args[0];
         logger.info("reading menu from:" + fileName);
 
-        CsvFileMenuRepositoryReader csvReader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
-        YamlFileMenuRepositoryReader yamlReader = new YamlFileMenuRepositoryReader(fileName);
-
-        printReader(csvReader);
-        printReader(yamlReader);
+        BeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
+        MenuPrinter printer = factory.getBean("printer", MenuPrinter.class);
+        printer.printMenus();
+        
+//        CsvFileMenuRepositoryReader csvReader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
+//        YamlFileMenuRepositoryReader yamlReader = new YamlFileMenuRepositoryReader(fileName);
+//
+//        printReader(csvReader);
+//        printReader(yamlReader);
     }
 }
