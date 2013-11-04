@@ -3,7 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:c="http://www.springframework.org/schema/c"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byType">
 
 	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" c:restaurantNames="karcsi"/>
 	
@@ -16,7 +17,7 @@
 		</property>
 	</bean>
 	
-	<bean id="karcsi" class="com.eggs.Restaurant" p:name="Karcsi Bufe" p:address-ref="epamAddress"/>
+	<bean id="karcsi" class="com.eggs.Restaurant" p:name="Karcsi Bufe"/>
 	
 	<bean id="epamAddress" class="com.eggs.Address" p:city="Budapest" p:zip="1082" p:street="Futo utca 47."/>
 	

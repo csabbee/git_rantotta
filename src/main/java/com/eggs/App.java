@@ -28,7 +28,7 @@ public class App {
         logger.info("reading menu from:" + fileName);
 
         BeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
-        MenuPrinter printer = factory.getBean("printer", MenuPrinter.class);
+        MenuPrinter printer = factory.getBean(MenuPrinter.class);
         logger.info("bean: " + printer);
         
         printer.printMenus();
