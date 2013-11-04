@@ -2,7 +2,7 @@ package com.eggs;
 
 import org.apache.log4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
-import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
@@ -27,9 +27,13 @@ public class App {
         String fileName = args[0];
         logger.info("reading menu from:" + fileName);
 
-        BeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
+        ListableBeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
         MenuPrinter printer = factory.getBean(MenuPrinter.class);
         logger.info("bean: " + printer);
+        String[] beannames = factory.getBeanDefinitionNames();
+        for (String string : beannames) {
+            logger.info("bean name: " + string);
+        }
         
         printer.printMenus();
         //CsvFileMenuRepositoryReader csvReader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
