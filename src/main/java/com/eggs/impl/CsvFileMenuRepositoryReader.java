@@ -10,6 +10,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
@@ -19,10 +20,12 @@ import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
-public class CsvFileMenuRepositoryReader implements MenuRepositoryReader, ApplicationContextAware {
+public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
 
     private Logger logger = LoggerFactory.getLogger(CsvFileMenuRepositoryReader.class);
     private String[] restaurantNames;
+    
+    @Autowired
     private ApplicationContext ctx;
 
     public CsvFileMenuRepositoryReader(String... restaurantNames) {
@@ -34,7 +37,8 @@ public class CsvFileMenuRepositoryReader implements MenuRepositoryReader, Applic
         String filename = restaurant + ".csv";
         logger.debug("restaurant is read from file: {}", filename);
 
-        MenuBuilder builder = MenuBuilder.menu().restaurant(restaurant);
+        MenuBuilder builder = ctx.getBean(MenuBuilder.class);
+        builder.restaurant(restaurant);
 
         Resource file = ctx.getResource(filename);
         BufferedReader reader;
