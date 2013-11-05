@@ -14,5 +14,5 @@
   </root>
   
   
-  <logger name="com.eggs.AddressEditor" level="debug" />
+  <logger name="com.eggs" level="warn" />
   </configuration>
