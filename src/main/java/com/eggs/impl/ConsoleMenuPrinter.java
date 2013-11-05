@@ -6,14 +6,14 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import com.eggs.BaseMenuPrinter;
 import com.eggs.Food;
 import com.eggs.Menu;
-import com.eggs.BaseMenuPrinter;
-import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
 public class ConsoleMenuPrinter extends BaseMenuPrinter implements ApplicationContextAware {
-
+    
+    private Locale locale;
     private ApplicationContext ctx;
     public ConsoleMenuPrinter() {
         super();
@@ -38,8 +38,9 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter implements ApplicationCo
         System.out.format(String.format(" %-20s---%10s %n", "-", "-").replace(" ", "-"));
         
         
-        String nameHeader = ctx.getMessage("header.name", new Object[0], Locale.getDefault());
-        String priceHeader = ctx.getMessage("header.price", new Object[0],  Locale.getDefault());
+        
+        String nameHeader = ctx.getMessage("header.name", new Object[0], locale);
+        String priceHeader = ctx.getMessage("header.price", new Object[0],  locale);
         
         System.out.format(" %-20s | %10s %n", nameHeader, priceHeader);
         
@@ -50,6 +51,12 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter implements ApplicationCo
     public void setApplicationContext(ApplicationContext ctx) throws BeansException {
         this.ctx = ctx;
         
+    }
+    public Locale getLocale() {
+        return locale;
+    }
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 
 }

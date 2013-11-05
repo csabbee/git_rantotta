@@ -11,6 +11,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
     <context:component-scan base-package="com.eggs" />
+    <context:property-placeholder location="classpath:breakfast.properties"/>
 	
     <bean class="com.eggs.Menu" p:restaurant-ref="karcsi" />
 
@@ -20,9 +21,9 @@
 	<bean id="karcsi" class="com.eggs.Restaurant" p:name="Karcsi Bufe" p:address="1082, Budapest, Futo utca 47."  />
 	
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="headers" />
-	<bean class="com.eggs.impl.ConsoleMenuPrinter" init-method="init" autowire-candidate="false" />
+	<bean class="com.eggs.impl.ConsoleMenuPrinter" init-method="init" p:locale="en"/>
 	<!-- shadow,standard,starwars,speed,shadow,nipples,lean,big -->
-	<bean class="com.eggs.impl.AsciiArtPrinter" init-method="init" p:font="lean"/>
+	<bean class="com.eggs.impl.AsciiArtPrinter" init-method="init" p:font="lean" autowire-candidate="false" />
 	
 	
 </beans>
