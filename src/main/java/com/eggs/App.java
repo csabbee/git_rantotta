@@ -28,24 +28,9 @@ public class App {
 
     public static void main(String[] args) {
 
-        if (args.length > 1) {
-            SLF4JBridgeHandler.removeHandlersForRootLogger();
-            SLF4JBridgeHandler.install();
-        }
-
-        String fileName = args[0];
-        logger.info("reading menu from:" + fileName);
-
-        //ListableBeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
         ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
         
         MenuPrinter printer = ctx.getBean(MenuPrinter.class);
-        printer.printMenus();
-        
-//        CsvFileMenuRepositoryReader csvReader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
-//        YamlFileMenuRepositoryReader yamlReader = new YamlFileMenuRepositoryReader(fileName);
-//
-//        printReader(csvReader);
-//        printReader(yamlReader);
+        printer.printMenus();        
     }
 }
