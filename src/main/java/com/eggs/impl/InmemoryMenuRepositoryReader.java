@@ -3,11 +3,14 @@ package com.eggs.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.eggs.Menu;
 import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
+@Component
 public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
 
     private List<Menu> menus = new ArrayList<Menu>();
