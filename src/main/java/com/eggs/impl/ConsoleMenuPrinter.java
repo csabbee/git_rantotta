@@ -20,7 +20,7 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter implements ApplicationCo
     
     private ApplicationContext ctx;
     
-    @Value("hu")
+    @Value("#{systemProperties['menu.language']}")
     private Locale locale;
     public ConsoleMenuPrinter() {
         super();
