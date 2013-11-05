@@ -1,8 +1,9 @@
 package com.eggs.impl;
 
 import java.io.InputStream;
-import java.util.logging.Logger;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
@@ -17,7 +18,7 @@ import com.eggs.MenuRepositoryReader;
 public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 
     private String yamlFileName;
-    private Logger logger = Logger.getLogger(getClass().getName());
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     public YamlFileMenuRepositoryReader() {
         this("menus.yml");
@@ -28,7 +29,7 @@ public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
     }
 
     public MenuRepository read() {
-        logger.fine("read() started ...");
+        logger.debug("read() started ...");
         Constructor constructor = new Constructor(MenuRepository.class);
         TypeDescription menuRepoDescription = new TypeDescription(MenuRepository.class);
         menuRepoDescription.putListPropertyType("menus", Menu.class);
