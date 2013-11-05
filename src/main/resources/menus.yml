@@ -5,7 +5,7 @@ menus:
         street: Futo utca 47
         zip: 1082
         city: Budapest
-    foods:
+    foodList:
         - id: k1
           name: Pacal
           price: 370
@@ -24,7 +24,7 @@ menus:
         street: Ferenc Korut 87
         zip: 1056
         city: Budapest
-    foods:
+    foodList:
         - id: m1
           name: Margherita
           price: 250

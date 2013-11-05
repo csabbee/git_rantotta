@@ -3,6 +3,7 @@ package com.eggs.impl;
 import java.io.InputStream;
 import java.util.logging.Logger;
 
+import org.springframework.stereotype.Component;
 import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
@@ -12,11 +13,16 @@ import com.eggs.Menu;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
+@Component
 public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 
     private String yamlFileName;
     private Logger logger = Logger.getLogger(getClass().getName());
 
+    public YamlFileMenuRepositoryReader() {
+        this("menus.yml");
+    }
+    
     public YamlFileMenuRepositoryReader(String yamlFileName) {
         this.yamlFileName = yamlFileName;
     }
