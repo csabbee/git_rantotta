@@ -14,7 +14,4 @@
     <context:property-placeholder location="classpath:breakfast.properties"/>		
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="headers" />	
 	
-    <bean name="menu" class="com.eggs.Menu" scope="prototype" />
-    <bean name="builder" class="com.eggs.MenuBuilder" scope="prototype" />
-    
 </beans>
