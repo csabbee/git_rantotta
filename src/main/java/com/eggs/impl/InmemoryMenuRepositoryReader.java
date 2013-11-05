@@ -10,7 +10,7 @@ import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
-@Component
+//@Component
 public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
 
     private List<Menu> menus = new ArrayList<Menu>();

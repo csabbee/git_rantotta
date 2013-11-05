@@ -12,14 +12,7 @@
     >
 
     <context:component-scan base-package="com.eggs" />
-	
-    <bean class="com.eggs.Menu" p:restaurant-ref="karcsi" />
-
-    <bean name="f1" class="com.eggs.Food" p:id="h1" p:name="Hagymas bab" p:price=" 780" />
-    <bean id="id2" name="f2,hal"  class="com.eggs.Food" p:id="h2" p:name="Krumplis Hal" p:price="1190" />		
-	
-	<bean id="karcsi" class="com.eggs.Restaurant" p:name="Karcsi Bufe" p:address="1082, Budapest, Futo utca 47."  />
-	
+		
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="headers" />	
 	
 </beans>
