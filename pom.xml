@@ -3,7 +3,21 @@
   <groupId>com.eggs</groupId>
   <artifactId>breakfast</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <repositories>
+    <repository>
+        <id>lalyos-snapshots</id>
+        <url>https://github.com/lalyos/mvn-repo/raw/master/snapshots</url>
+    </repository>
+</repositories>
+
+
   <dependencies>
+  <dependency>
+    <groupId>com.github.lalyos</groupId>
+    <artifactId>jfiglet</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+</dependency>
   <dependency>
 	<groupId>org.yaml</groupId>
 	<artifactId>snakeyaml</artifactId>

@@ -15,6 +15,7 @@ import com.eggs.BaseMenuPrinter;
 import com.eggs.Food;
 import com.eggs.Menu;
 import com.eggs.MenuRepositoryReader;
+import com.github.lalyos.jfiglet.FigletFont;
 
 public class AsciiArtPrinter extends BaseMenuPrinter implements ApplicationContextAware {
 
@@ -31,20 +32,7 @@ public class AsciiArtPrinter extends BaseMenuPrinter implements ApplicationConte
     }
     
     private String getAsciiText(String msg) {
-        StringBuilder ret = new StringBuilder();
-        try {
-            URL url = new URL("http://artii.herokuapp.com/make?text=" + msg + "&font=" + this.font);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            String line = "";
-            while ( (line = reader.readLine()) != null ) {
-                logger.debug("next line: {}", line);
-                ret.append(line + "\n");
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ret.toString();
+        return FigletFont.convertOneLine(msg);
     }
 
     @Override
