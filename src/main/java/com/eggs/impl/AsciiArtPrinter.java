@@ -18,7 +18,7 @@ import com.eggs.Menu;
 import com.eggs.MenuRepositoryReader;
 import com.github.lalyos.jfiglet.FigletFont;
 
-@Component
+//@Component
 public class AsciiArtPrinter extends BaseMenuPrinter implements ApplicationContextAware {
 
     private Logger logger = LoggerFactory.getLogger(AsciiArtPrinter.class);

@@ -5,6 +5,7 @@ import java.util.Locale;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import com.eggs.Food;
 import com.eggs.Menu;
@@ -12,6 +13,7 @@ import com.eggs.BaseMenuPrinter;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
+@Component
 public class ConsoleMenuPrinter extends BaseMenuPrinter implements ApplicationContextAware {
 
     
