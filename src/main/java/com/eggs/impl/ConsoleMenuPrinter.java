@@ -20,7 +20,7 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter implements ApplicationCo
     
     private ApplicationContext ctx;
     
-    @Value("#{systemProperties['menu.language']}")
+    @Value("#{ T(java.lang.System).getenv('MENU_LANG') != null ? T(java.lang.System).getenv('MENU_LANG') : T(java.lang.System).getProperties().getProperty('menu.language', 'en') }")
     private Locale locale;
     public ConsoleMenuPrinter() {
         super();
