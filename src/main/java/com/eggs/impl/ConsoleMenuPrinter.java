@@ -4,12 +4,10 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import com.eggs.BaseMenuPrinter;
@@ -18,15 +16,15 @@ import com.eggs.Menu;
 import com.eggs.MenuRepositoryReader;
 
 @Component
-public class ConsoleMenuPrinter extends BaseMenuPrinter implements ApplicationContextAware {
-
-    
-    private ApplicationContext ctx;
+public class ConsoleMenuPrinter extends BaseMenuPrinter {
     
     private static final Logger logger = LoggerFactory.getLogger(ConsoleMenuPrinter.class);
     
     @Value("#{T(com.eggs.utils.ConfigurationSupport).getConfig('menu.lang','en')}")
     private Locale locale;
+
+    @Autowired
+    private MessageSource ctx;
     
     @Autowired
     public ConsoleMenuPrinter(@Qualifier("memory") MenuRepositoryReader reader) {
@@ -59,10 +57,6 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter implements ApplicationCo
         for (Food food : menu.getFoodList()) {
             System.out.format(" %-20s | %10.2f %n", food.getName(), food.getPrice());
         }
-    }
-    public void setApplicationContext(ApplicationContext ctx) throws BeansException {
-        this.ctx = ctx;
-        
     }
     public Locale getLocale() {
         return locale;
