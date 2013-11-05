@@ -1,5 +1,7 @@
 package com.eggs;
 
+import javax.annotation.PostConstruct;
+
 public abstract class BaseMenuPrinter implements MenuPrinter {
 
     private MenuRepository menuRepository;
@@ -9,6 +11,7 @@ public abstract class BaseMenuPrinter implements MenuPrinter {
         this.menuRepository = menuRepository;
     }
 
+    @PostConstruct
     public void init() {
         menuRepository = reader.read();
     }

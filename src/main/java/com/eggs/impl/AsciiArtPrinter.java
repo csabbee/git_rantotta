@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import com.eggs.BaseMenuPrinter;
 import com.eggs.Food;
@@ -17,6 +18,7 @@ import com.eggs.Menu;
 import com.eggs.MenuRepositoryReader;
 import com.github.lalyos.jfiglet.FigletFont;
 
+@Component
 public class AsciiArtPrinter extends BaseMenuPrinter implements ApplicationContextAware {
 
     private Logger logger = LoggerFactory.getLogger(AsciiArtPrinter.class);
