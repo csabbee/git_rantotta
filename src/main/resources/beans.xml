@@ -24,7 +24,8 @@
 	
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="headers" />
 	<bean class="com.eggs.impl.ConsoleMenuPrinter" init-method="init" autowire-candidate="false" />
-	<bean class="com.eggs.impl.AsciiArtPrinter" init-method="init" p:font="moscow"/>
+	<!-- shadow,standard,starwars,speed,shadow,nipples,lean,big -->
+	<bean class="com.eggs.impl.AsciiArtPrinter" init-method="init" p:font="lean"/>
 	
 	
 </beans>
