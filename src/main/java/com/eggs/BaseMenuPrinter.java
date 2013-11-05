@@ -2,12 +2,18 @@ package com.eggs;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public abstract class BaseMenuPrinter implements MenuPrinter {
 
     private MenuRepository menuRepository;
-    private MenuRepositoryReader reader;
+    protected MenuRepositoryReader reader;
+    private static final Logger logger = LoggerFactory.getLogger(BaseMenuPrinter.class);
 
     public BaseMenuPrinter(MenuRepository menuRepository) {
+        logger.debug("## BASE constr called: {}", menuRepository);
         this.menuRepository = menuRepository;
     }
 
