@@ -10,17 +10,16 @@
     default-autowire="byType" >
 
 
-	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" c:restaurantNames="karcsi,marcello" />
+	<bean id="repoReader" class="com.eggs.impl.CsvFileMenuRepositoryReader" c:restaurantNames="karcsi,marcello" autowire-candidate="false"  />
 	
-	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader" autowire-candidate="false"   />
+	<bean id="memoryReader" class="com.eggs.impl.InmemoryMenuRepositoryReader"   />
 
     <bean class="com.eggs.Menu" p:restaurant-ref="karcsi" />
 
     <bean name="f1" class="com.eggs.Food" p:id="h1" p:name="Hagymas bab" p:price=" 780" />
     <bean id="id2" name="f2,hal"  class="com.eggs.Food" p:id="h2" p:name="Krumplis Hal" p:price="1190" />		
 	
-	<bean id="karcsi" class="com.eggs.Restaurant" p:name="Karcsi Bufe"  />
-	<bean id="address" class="com.eggs.Address"  p:city="Budpest" p:zip="1082" p:street="Futo utca 47."/>
+	<bean id="karcsi" class="com.eggs.Restaurant" p:name="Karcsi Bufe" p:address="1082, Budapest, Futo utca 47."  />
 	
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="headers" />
 	<bean class="com.eggs.impl.ConsoleMenuPrinter" init-method="init" autowire-candidate="false" />

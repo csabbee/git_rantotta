@@ -40,7 +40,7 @@ public class AsciiArtPrinter extends BaseMenuPrinter implements ApplicationConte
         String name = menu.getRestaurant().getName();
         System.out.println(getAsciiText(name));
         
-        
+        System.out.println(menu.getRestaurant().getAddress());
         
         String nameHeader = ctx.getMessage("header.name", new Object[0], Locale.getDefault());
         String priceHeader = ctx.getMessage("header.price", new Object[0],  Locale.getDefault());
