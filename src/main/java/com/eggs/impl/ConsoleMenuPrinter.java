@@ -3,6 +3,7 @@ package com.eggs.impl;
 import java.util.Locale;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,8 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter implements ApplicationCo
 
     
     private ApplicationContext ctx;
+    
+    @Value("hu")
     private Locale locale;
     public ConsoleMenuPrinter() {
         super();
