@@ -5,8 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+
 public class Menu {
     private Restaurant restaurant;
+    
+    @Autowired
+    private ApplicationEventPublisher publisher;
+    
     private Map<String, Food> foodMap = new HashMap<String, Food>();
 
     public Restaurant getRestaurant() {
@@ -34,6 +41,6 @@ public class Menu {
 
     public void addFood(Food food) {
         foodMap.put(food.getId(), food);
-
+        publisher.publishEvent(new FoodEvent(food));
     }
 }

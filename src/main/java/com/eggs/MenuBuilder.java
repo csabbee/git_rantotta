@@ -1,15 +1,11 @@
 package com.eggs;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class MenuBuilder {
 
-    private Menu menu = new Menu();
-
-    private MenuBuilder() {
-    }
-
-    public static MenuBuilder menu() {
-        return new MenuBuilder();
-    }
+    @Autowired
+    private Menu menu;
 
     public MenuBuilder restaurant(String name) {
         menu.setRestaurant(new Restaurant(name));
