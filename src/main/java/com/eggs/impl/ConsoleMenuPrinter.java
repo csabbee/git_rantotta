@@ -15,6 +15,7 @@ import com.eggs.Food;
 import com.eggs.Menu;
 import com.eggs.MenuRepositoryReader;
 
+@Component
 public class ConsoleMenuPrinter extends BaseMenuPrinter {
     
     private static final Logger logger = LoggerFactory.getLogger(ConsoleMenuPrinter.class);
