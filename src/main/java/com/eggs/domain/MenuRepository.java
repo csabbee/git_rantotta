@@ -1,4 +1,4 @@
-package com.eggs;
+package com.eggs.domain;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.eggs;
+package com.eggs.domain;
 
 /**
  * The implementations of this Interface should read MenuRepositories from some

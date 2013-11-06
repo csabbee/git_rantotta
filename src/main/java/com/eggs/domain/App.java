@@ -1,4 +1,4 @@
-package com.eggs;
+package com.eggs.domain;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,8 @@ public class App {
     private static Logger logger = LoggerFactory.getLogger(App.class);
 
     private static void printReader(MenuRepositoryReader reader) {
-        ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader);
+        ConsoleMenuPrinter printer = new ConsoleMenuPrinter();
+        printer.setReader(reader);
 
         printer.printMenus();
     }

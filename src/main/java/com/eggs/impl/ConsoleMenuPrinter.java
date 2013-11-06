@@ -11,10 +11,10 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-import com.eggs.BaseMenuPrinter;
-import com.eggs.Food;
-import com.eggs.Menu;
-import com.eggs.MenuRepositoryReader;
+import com.eggs.domain.BaseMenuPrinter;
+import com.eggs.domain.Food;
+import com.eggs.domain.Menu;
+import com.eggs.domain.MenuRepositoryReader;
 
 @Component
 @Qualifier("console")

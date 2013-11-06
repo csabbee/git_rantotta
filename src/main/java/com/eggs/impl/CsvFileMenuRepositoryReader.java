@@ -15,10 +15,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 
-import com.eggs.Menu;
-import com.eggs.MenuBuilder;
-import com.eggs.MenuRepository;
-import com.eggs.MenuRepositoryReader;
+import com.eggs.domain.Menu;
+import com.eggs.domain.MenuBuilder;
+import com.eggs.domain.MenuRepository;
+import com.eggs.domain.MenuRepositoryReader;
 
 public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
 
@@ -77,13 +77,6 @@ public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
 
         MenuRepository repo = new MenuRepository(menus);
         return repo;
-    }
-
-    public static void main(String[] args) {
-        CsvFileMenuRepositoryReader reader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
-        ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader);
-
-        printer.printMenus();
     }
 
     public void setApplicationContext(ApplicationContext ctx) throws BeansException {

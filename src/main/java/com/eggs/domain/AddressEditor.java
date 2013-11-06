@@ -1,4 +1,4 @@
-package com.eggs;
+package com.eggs.domain;
 
 import java.beans.PropertyEditorSupport;
 
