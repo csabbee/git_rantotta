@@ -5,19 +5,19 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 
 import com.eggs.Menu;
 import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
-@Component
 public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
 
+    private static final Logger logger = LoggerFactory.getLogger(InmemoryMenuRepositoryReader.class);
     private List<Menu> menus = new ArrayList<Menu>();
 
     @Autowired
@@ -28,11 +28,13 @@ public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
     
     @PostConstruct
     public void init() {
+        logger.error("init called");
         createFirstMenu();
         createSecondMenu();
     }
 
     private void createFirstMenu() {
+        logger.equals("createFirstMenu()");
         MenuBuilder builder = ctx.getBean(MenuBuilder.class);
         menus.add(builder.restaurant("Karesz").food("k1", "hagymas rantotta", 450).food("k2", "ham and eggs", 540)
                 .food("k3", "kroasszon", 320).build());
