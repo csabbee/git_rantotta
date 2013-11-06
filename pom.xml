@@ -3,14 +3,6 @@
   <groupId>com.eggs</groupId>
   <artifactId>breakfast</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
-  <repositories>
-    <repository>
-        <id>lalyos-snapshots</id>
-        <url>https://github.com/lalyos/mvn-repo/raw/master/snapshots</url>
-    </repository>
-</repositories>
-
 
   <dependencies>
   <dependency>
@@ -22,7 +14,7 @@
   <dependency>
     <groupId>com.github.lalyos</groupId>
     <artifactId>jfiglet</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 </dependency>
   <dependency>
 	<groupId>org.yaml</groupId>
@@ -71,7 +63,7 @@
   <plugin>
   	<groupId>org.apache.maven.plugins</groupId>
   	<artifactId>maven-jar-plugin</artifactId>
-  	<version>2.4</version>
+  	<version>2.3.2</version>
   	<configuration>
   	<archive>
             <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
