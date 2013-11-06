@@ -1,9 +1,5 @@
 #!/bin/bash
 
-MENU_LANG=en
-OPTS=""
-OPTS="$OPTS -Dlogback.configurationFile=/tmp/eggs/logback.xml"
-#OPTS="$OPTS -Dmenu.lang=hu"
-OPTS="$OPTS -cp "'target/classes:target/dependency/*'
+OPTS="-Dlogback.configurationFile=./src/main/resources/logback-silent.xml"
 
-java $OPTS com.eggs.App
+java $OPTS -cp './target/classes:./target/dependency/*' com.eggs.App
