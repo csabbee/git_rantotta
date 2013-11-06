@@ -8,6 +8,8 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -25,11 +27,10 @@ public class AsciiArtPrinter extends BaseMenuPrinter implements ApplicationConte
     private ApplicationContext ctx;
     // shadow,lean,standard,starwars,speed,shadow,nipples,lean,big,
     private String font = "doom";
-    
-    public AsciiArtPrinter() {
-        super();
-    }
-    public AsciiArtPrinter(MenuRepositoryReader reader) {
+
+    @Autowired
+    public AsciiArtPrinter(@Qualifier("memory")MenuRepositoryReader reader) {
+        this.reader = reader;
     }
     
     private String getAsciiText(String msg) {
