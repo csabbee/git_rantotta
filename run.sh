@@ -2,4 +2,4 @@
 
 OPTS="-Dlogback.configurationFile=./src/main/resources/logback-silent.xml"
 
-java $OPTS -cp './target/classes:./target/dependency/*' com.eggs.App
+java $OPTS -cp './target/classes:./target/dependency/*' com.eggs.AnnotatedApp
