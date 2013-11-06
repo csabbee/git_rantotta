@@ -20,7 +20,7 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
     
     private static final Logger logger = LoggerFactory.getLogger(ConsoleMenuPrinter.class);
     
-    @Value("#{T(com.eggs.utils.ConfigurationSupport).getConfig('menu.lang','en')}")
+    @Value("${menu.lang:en}")
     private Locale locale;
 
     @Autowired
