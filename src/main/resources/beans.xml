@@ -17,5 +17,9 @@
     <beans profile="default">
       <bean class="com.eggs.impl.ConsoleMenuPrinter" />      
     </beans>
+    
+    <beans profile="ascii">
+      <bean class="com.eggs.impl.AsciiArtPrinter" />
+    </beans>
 	
 </beans>
