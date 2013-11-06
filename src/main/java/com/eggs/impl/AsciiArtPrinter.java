@@ -20,11 +20,12 @@ import com.eggs.Menu;
 import com.eggs.MenuRepositoryReader;
 import com.github.lalyos.jfiglet.FigletFont;
 
-public class AsciiArtPrinter extends BaseMenuPrinter implements ApplicationContextAware {
+@Component
+public class AsciiArtPrinter extends BaseMenuPrinter  {
 
     private Logger logger = LoggerFactory.getLogger(AsciiArtPrinter.class);
     
-    private ApplicationContext ctx;
+    //private ApplicationContext ctx;
     // shadow,lean,standard,starwars,speed,shadow,nipples,lean,big,
     private String font = "doom";
 
@@ -44,18 +45,17 @@ public class AsciiArtPrinter extends BaseMenuPrinter implements ApplicationConte
         
         System.out.println(menu.getRestaurant().getAddress());
         
-        String nameHeader = ctx.getMessage("header.name", new Object[0], Locale.getDefault());
-        String priceHeader = ctx.getMessage("header.price", new Object[0],  Locale.getDefault());
-        
+//        String nameHeader = ctx.getMessage("header.name", new Object[0], Locale.getDefault());
+//        String priceHeader = ctx.getMessage("header.price", new Object[0],  Locale.getDefault());
+
+        String nameHeader = "[name]";
+        String priceHeader = "[price]";
+
         System.out.format(" %-20s | %10s %n", nameHeader, priceHeader);
         
         for (Food food : menu.getFoodList()) {
             System.out.format(" %-20s | %10.2f %n", food.getName(), food.getPrice());
         }
-    }
-    public void setApplicationContext(ApplicationContext ctx) throws BeansException {
-        this.ctx = ctx;
-        
     }
     public String getFont() {
         return font;
