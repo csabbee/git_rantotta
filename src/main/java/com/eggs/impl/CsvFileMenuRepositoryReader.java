@@ -15,10 +15,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 
-import com.eggs.Menu;
-import com.eggs.MenuBuilder;
-import com.eggs.MenuRepository;
-import com.eggs.MenuRepositoryReader;
+import com.eggs.domain.Menu;
+import com.eggs.domain.MenuBuilder;
+import com.eggs.domain.MenuRepository;
+import com.eggs.domain.MenuRepositoryReader;
 
 public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
 

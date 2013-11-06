@@ -1,4 +1,4 @@
-package com.eggs.impl;
+package com.eggs.console;
 
 import java.util.Locale;
 
@@ -8,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-import com.eggs.BaseMenuPrinter;
-import com.eggs.Food;
-import com.eggs.Menu;
-import com.eggs.MenuRepositoryReader;
+import com.eggs.domain.BaseMenuPrinter;
+import com.eggs.domain.Food;
+import com.eggs.domain.Menu;
 
 @Component
 @Qualifier("console")

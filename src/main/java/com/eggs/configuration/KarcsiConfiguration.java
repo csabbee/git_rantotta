@@ -4,8 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
-import com.eggs.Address;
-import com.eggs.Restaurant;
+import com.eggs.domain.Address;
+import com.eggs.domain.Restaurant;
 
 @Configuration
 public class KarcsiConfiguration {

@@ -1,4 +1,4 @@
-package com.eggs;
+package com.eggs.domain;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -10,7 +10,7 @@ public class AnnotatedApp {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MenuConfiguration.class);
         
         
-        MenuPrinter printer = ctx.getBean("mainPrinter", MenuPrinter.class);
+        MenuPrinter printer = ctx.getBean(MenuPrinter.class);
         printer.printMenus();
     }
 

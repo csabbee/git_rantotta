@@ -1,4 +1,4 @@
-package com.eggs.impl;
+package com.eggs.ascii;
 
 import java.util.Locale;
 
@@ -9,10 +9,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.eggs.BaseMenuPrinter;
-import com.eggs.Food;
-import com.eggs.Menu;
-import com.eggs.MenuRepositoryReader;
+import com.eggs.domain.BaseMenuPrinter;
+import com.eggs.domain.Food;
+import com.eggs.domain.Menu;
 import com.github.lalyos.jfiglet.FigletFont;
 
 @Component

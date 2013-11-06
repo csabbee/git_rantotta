@@ -1,4 +1,4 @@
-package com.eggs;
+package com.eggs.domain;
 
 import org.springframework.context.ApplicationEvent;
 
