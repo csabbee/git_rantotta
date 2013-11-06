@@ -1,4 +1,4 @@
-package com.eggs.impl;
+package com.eggs.ascii;
 
 import java.util.Locale;
 

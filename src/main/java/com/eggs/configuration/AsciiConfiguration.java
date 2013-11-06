@@ -4,16 +4,17 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.eggs.ascii.AsciiArtPrinter;
 import com.eggs.domain.BaseMenuPrinter;
-import com.eggs.domain.MenuPrinter;
 import com.eggs.domain.MenuRepositoryReader;
-import com.eggs.impl.AsciiArtPrinter;
+import com.eggs.impl.PackageScanSupport;
 
 @Configuration
+@ComponentScan(basePackageClasses={PackageScanSupport.class,AsciiArtPrinter.class})
 @Profile("ascii")
 public class AsciiConfiguration {
 
@@ -28,11 +29,6 @@ public class AsciiConfiguration {
     @PostConstruct
     public void wire() {
         printer.setReader(reader);
-    }
-    
-    @Bean
-    public MenuPrinter mainPrinter() {
-        return printer;
     }
     
 }
