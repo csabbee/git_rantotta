@@ -19,10 +19,10 @@ public class MenuConfiguration {
         source.setBasename("headers");
         return source;
     }
-    
+
     @Bean
-     public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {
-      return new PropertySourcesPlaceholderConfigurer();
-     }
+    public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
 }
