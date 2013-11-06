@@ -1,11 +1,19 @@
 package com.eggs.configuration;
 
-
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
-@ComponentScan(basePackages="com.eggs")
+@ComponentScan(basePackages = "com.eggs")
 public class MenuConfiguration {
 
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+        source.setBasename("headers");
+        return source;
+    }
 }

@@ -21,11 +21,12 @@ import com.eggs.MenuRepositoryReader;
 import com.github.lalyos.jfiglet.FigletFont;
 
 @Component
-public class AsciiArtPrinter extends BaseMenuPrinter  {
+public class AsciiArtPrinter extends BaseMenuPrinter {
 
     private Logger logger = LoggerFactory.getLogger(AsciiArtPrinter.class);
     
-    //private ApplicationContext ctx;
+    @Autowired
+    private ApplicationContext ctx;
     // shadow,lean,standard,starwars,speed,shadow,nipples,lean,big,
     private String font = "doom";
 
@@ -45,11 +46,8 @@ public class AsciiArtPrinter extends BaseMenuPrinter  {
         
         System.out.println(menu.getRestaurant().getAddress());
         
-//        String nameHeader = ctx.getMessage("header.name", new Object[0], Locale.getDefault());
-//        String priceHeader = ctx.getMessage("header.price", new Object[0],  Locale.getDefault());
-
-        String nameHeader = "[name]";
-        String priceHeader = "[price]";
+        String nameHeader = ctx.getMessage("header.name", new Object[0], Locale.getDefault());
+        String priceHeader = ctx.getMessage("header.price", new Object[0],  Locale.getDefault());
 
         System.out.format(" %-20s | %10s %n", nameHeader, priceHeader);
         
