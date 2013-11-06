@@ -15,6 +15,8 @@ import com.eggs.Menu;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
+@Component
+@Qualifier("yaml")
 public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 
     private String yamlFileName;
@@ -49,10 +51,4 @@ public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
         return menuRepo;
     }
 
-    public static void main(String[] args) {
-        YamlFileMenuRepositoryReader reader = new YamlFileMenuRepositoryReader("menus.yml");
-        ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader);
-
-        printer.printMenus();
-    }
 }

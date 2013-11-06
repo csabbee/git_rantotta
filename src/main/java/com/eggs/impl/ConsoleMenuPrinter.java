@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import com.eggs.BaseMenuPrinter;
@@ -15,6 +16,8 @@ import com.eggs.Food;
 import com.eggs.Menu;
 import com.eggs.MenuRepositoryReader;
 
+@Component
+@Qualifier("console")
 public class ConsoleMenuPrinter extends BaseMenuPrinter {
     
     private static final Logger logger = LoggerFactory.getLogger(ConsoleMenuPrinter.class);
@@ -25,10 +28,7 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
     @Autowired
     private MessageSource ctx;
     
-    @Autowired
-    public ConsoleMenuPrinter(MenuRepositoryReader reader) {
-        this.reader = reader;
-        logger.debug("#### autowired reader: {}", reader);
+    public ConsoleMenuPrinter() {
     }
 
     @Override

@@ -17,13 +17,13 @@ public abstract class BaseMenuPrinter implements MenuPrinter {
         this.menuRepository = menuRepository;
     }
 
-    @PostConstruct
     public void init() {
         menuRepository = reader.read();
     }
     
     public void setReader(MenuRepositoryReader reader) {
         this.reader = reader;
+        init();
     }
     public BaseMenuPrinter() {
         // TODO Auto-generated constructor stub

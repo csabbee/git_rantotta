@@ -5,6 +5,7 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,8 @@ import com.eggs.Menu;
 import com.eggs.MenuRepositoryReader;
 import com.github.lalyos.jfiglet.FigletFont;
 
+@Component
+@Qualifier("ascii")
 public class AsciiArtPrinter extends BaseMenuPrinter {
 
     private Logger logger = LoggerFactory.getLogger(AsciiArtPrinter.class);
@@ -23,9 +26,7 @@ public class AsciiArtPrinter extends BaseMenuPrinter {
     // shadow,lean,standard,starwars,speed,shadow,nipples,lean,big,
     private String font = "doom";
 
-    @Autowired
-    public AsciiArtPrinter(MenuRepositoryReader reader) {
-        this.reader = reader;
+    public AsciiArtPrinter() {
     }
     
     private String getAsciiText(String msg) {
