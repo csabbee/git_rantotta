@@ -26,7 +26,7 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
     private MessageSource ctx;
     
     @Autowired
-    public ConsoleMenuPrinter(@Qualifier("memory") MenuRepositoryReader reader) {
+    public ConsoleMenuPrinter(MenuRepositoryReader reader) {
         this.reader = reader;
         logger.debug("#### autowired reader: {}", reader);
     }

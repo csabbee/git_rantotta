@@ -29,7 +29,7 @@ public class AsciiArtPrinter extends BaseMenuPrinter implements ApplicationConte
     private String font = "doom";
 
     @Autowired
-    public AsciiArtPrinter(@Qualifier("memory")MenuRepositoryReader reader) {
+    public AsciiArtPrinter(MenuRepositoryReader reader) {
         this.reader = reader;
     }
     

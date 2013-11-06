@@ -15,8 +15,6 @@ import com.eggs.MenuBuilder;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
-@Component
-@Qualifier("memory")
 public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
 
     private List<Menu> menus = new ArrayList<Menu>();

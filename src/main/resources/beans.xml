@@ -15,11 +15,13 @@
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="headers" />	
 
     <beans profile="default">
-      <bean class="com.eggs.impl.ConsoleMenuPrinter" />      
+      <bean class="com.eggs.impl.ConsoleMenuPrinter" />
+      <bean  class="com.eggs.impl.InmemoryMenuRepositoryReader" /> 
     </beans>
     
     <beans profile="ascii">
       <bean class="com.eggs.impl.AsciiArtPrinter" />
+      <bean class="com.eggs.impl.YamlFileMenuRepositoryReader"></bean>
     </beans>
 	
 </beans>

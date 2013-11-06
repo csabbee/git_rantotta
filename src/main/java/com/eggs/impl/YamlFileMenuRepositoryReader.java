@@ -15,8 +15,6 @@ import com.eggs.Menu;
 import com.eggs.MenuRepository;
 import com.eggs.MenuRepositoryReader;
 
-@Component
-@Qualifier("yaml")
 public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
 
     private String yamlFileName;
