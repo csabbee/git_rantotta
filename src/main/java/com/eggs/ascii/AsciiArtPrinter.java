@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
 import com.eggs.interfaces.BaseMenuPrinter;
+import com.eggs.interfaces.MenuRepository;
 import com.github.lalyos.jfiglet.FigletFont;
 
 @Component
@@ -25,7 +26,8 @@ public class AsciiArtPrinter extends BaseMenuPrinter {
     // shadow,lean,standard,starwars,speed,shadow,nipples,lean,big,
     private String font = "doom";
 
-    public AsciiArtPrinter() {
+    public AsciiArtPrinter(MenuRepository menuRepository) {
+        super(menuRepository);
     }
     
     private String getAsciiText(String msg) {
