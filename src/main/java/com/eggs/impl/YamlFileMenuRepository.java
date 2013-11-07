@@ -16,6 +16,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
+import com.eggs.interfaces.MenuPrinter;
 import com.eggs.interfaces.MenuRepository;
 
 @Component
@@ -25,9 +26,11 @@ public class YamlFileMenuRepository implements MenuRepository {
     private String yamlFileName;
     private Logger logger = LoggerFactory.getLogger(getClass());
     private List<Menu> menus = new ArrayList<Menu>();
+    private MenuPrinter printer;
     
-    public YamlFileMenuRepository() {
+    public YamlFileMenuRepository(MenuPrinter printer) {
         this("menus.yml");
+        this.printer = printer;
     }
     
     public YamlFileMenuRepository(String yamlFileName) {
