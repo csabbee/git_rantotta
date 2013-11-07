@@ -18,15 +18,15 @@ import com.eggs.interfaces.MenuRepository;
 
 @Component
 @Qualifier("memory")
-public class InmemoryMenuRepositoryReader implements MenuRepository {
+public class InmemoryMenuRepository implements MenuRepository {
 
-    private static final Logger logger = LoggerFactory.getLogger(InmemoryMenuRepositoryReader.class);
+    private static final Logger logger = LoggerFactory.getLogger(InmemoryMenuRepository.class);
     private List<Menu> menus = new ArrayList<Menu>();
 
     @Autowired
     private ApplicationContext ctx;
     
-    public InmemoryMenuRepositoryReader() {
+    public InmemoryMenuRepository() {
     }
     
     @PostConstruct
@@ -43,7 +43,6 @@ public class InmemoryMenuRepositoryReader implements MenuRepository {
                 .food("k1", "hagymas bab", 450)
                 .food("k2", "krumplis hal", 540)
                 .build());
-
     }
 
     private void createSecondMenu() {
@@ -53,23 +52,9 @@ public class InmemoryMenuRepositoryReader implements MenuRepository {
                 .food("m2", "furj tojas", 890)
                 .food("m3", "dinnyes palacsinta", 1490)
                 .build());
-
     }
 
     public List<Menu> getAllmenu() {
         return menus;
     }
-
-    public MenuRepository read() {
-        return new MenuRepository(menus);
-    }
-
-    public List<Menu> getMenus() {
-        return menus;
-    }
-
-    public void setMenus(List<Menu> menus) {
-        this.menus = menus;
-    }
-
 }

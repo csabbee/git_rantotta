@@ -16,7 +16,7 @@
 
     <beans profile="default">
       <bean class="com.eggs.console.ConsoleMenuPrinter" />
-      <bean  class="com.eggs.impl.InmemoryMenuRepositoryReader" /> 
+      <bean  class="com.eggs.impl.InmemoryMenuRepository" /> 
     </beans>
     
     <beans profile="ascii">
