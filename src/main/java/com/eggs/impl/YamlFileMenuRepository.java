@@ -1,6 +1,10 @@
 package com.eggs.impl;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,27 +16,28 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
-import com.eggs.domain.MenuRepository;
-import com.eggs.domain.MenuRepositoryReader;
+import com.eggs.interfaces.MenuRepository;
 
 @Component
 @Qualifier("yaml")
-public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
+public class YamlFileMenuRepository implements MenuRepository {
 
     private String yamlFileName;
     private Logger logger = LoggerFactory.getLogger(getClass());
-
-    public YamlFileMenuRepositoryReader() {
+    private List<Menu> menus = new ArrayList<Menu>();
+    
+    public YamlFileMenuRepository() {
         this("menus.yml");
     }
     
-    public YamlFileMenuRepositoryReader(String yamlFileName) {
+    public YamlFileMenuRepository(String yamlFileName) {
         this.yamlFileName = yamlFileName;
     }
 
+    @PostConstruct
     public MenuRepository read() {
         logger.debug("read() started ...");
-        Constructor constructor = new Constructor(MenuRepository.class);
+        Constructor constructor = new Constructor(YamlFileMenuRepository.class);
         TypeDescription menuRepoDescription = new TypeDescription(MenuRepository.class);
         menuRepoDescription.putListPropertyType("menus", Menu.class);
 
@@ -49,6 +54,10 @@ public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
         MenuRepository menuRepo = (MenuRepository) yaml.load(stream);
 
         return menuRepo;
+    }
+
+    public List<Menu> getAllmenu() {
+        return menus;
     }
 
 }

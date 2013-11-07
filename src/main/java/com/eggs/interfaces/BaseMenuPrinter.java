@@ -1,9 +1,12 @@
-package com.eggs.domain;
+package com.eggs.interfaces;
 
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.eggs.domain.Menu;
+import com.eggs.domain.MenuRepositoryReader;
 
 
 public abstract class BaseMenuPrinter implements MenuPrinter {

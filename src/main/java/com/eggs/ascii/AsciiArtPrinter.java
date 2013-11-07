@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.eggs.domain.BaseMenuPrinter;
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
+import com.eggs.interfaces.BaseMenuPrinter;
 import com.github.lalyos.jfiglet.FigletFont;
 
 @Component

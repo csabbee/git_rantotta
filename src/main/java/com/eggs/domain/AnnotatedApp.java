@@ -3,6 +3,7 @@ package com.eggs.domain;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.eggs.configuration.MenuConfiguration;
+import com.eggs.interfaces.MenuPrinter;
 
 public class AnnotatedApp {
 

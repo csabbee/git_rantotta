@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.eggs.domain.BaseMenuPrinter;
 import com.eggs.domain.MenuRepositoryReader;
+import com.eggs.interfaces.BaseMenuPrinter;
 
 @Configuration
 @ComponentScan(basePackageClasses={com.eggs.impl.ImplPackageScanSupport.class,com.eggs.console.ConsoleMenuPrinter.class})

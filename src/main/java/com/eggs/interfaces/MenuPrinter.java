@@ -1,4 +1,4 @@
-package com.eggs.domain;
+package com.eggs.interfaces;
 
 public interface MenuPrinter {
 

@@ -17,10 +17,10 @@ import org.springframework.core.io.Resource;
 
 import com.eggs.domain.Menu;
 import com.eggs.domain.MenuBuilder;
-import com.eggs.domain.MenuRepository;
 import com.eggs.domain.MenuRepositoryReader;
+import com.eggs.interfaces.MenuRepository;
 
-public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
+public class CsvFileMenuRepositoryReader implements MenuRepository {
 
     private Logger logger = LoggerFactory.getLogger(CsvFileMenuRepositoryReader.class);
     private String[] restaurantNames;

@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.eggs.console.ConsoleMenuPrinter;
+import com.eggs.interfaces.MenuPrinter;
 
 public class App {
     private static Logger logger = LoggerFactory.getLogger(App.class);

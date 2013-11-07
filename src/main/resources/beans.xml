@@ -21,7 +21,7 @@
     
     <beans profile="ascii">
       <bean class="com.eggs.ascii.AsciiArtPrinter" />
-      <bean class="com.eggs.impl.YamlFileMenuRepositoryReader"></bean>
+      <bean class="com.eggs.impl.YamlFileMenuRepository"></bean>
     </beans>
 	
 </beans>

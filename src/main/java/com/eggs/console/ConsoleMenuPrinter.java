@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
-import com.eggs.domain.BaseMenuPrinter;
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
+import com.eggs.interfaces.BaseMenuPrinter;
 
 @Component
 @Qualifier("console")

@@ -14,12 +14,11 @@ import org.springframework.stereotype.Component;
 
 import com.eggs.domain.Menu;
 import com.eggs.domain.MenuBuilder;
-import com.eggs.domain.MenuRepository;
-import com.eggs.domain.MenuRepositoryReader;
+import com.eggs.interfaces.MenuRepository;
 
 @Component
 @Qualifier("memory")
-public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
+public class InmemoryMenuRepositoryReader implements MenuRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(InmemoryMenuRepositoryReader.class);
     private List<Menu> menus = new ArrayList<Menu>();
