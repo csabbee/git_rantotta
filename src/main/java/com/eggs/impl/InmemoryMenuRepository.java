@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.eggs.domain.Menu;
 import com.eggs.domain.MenuBuilder;
+import com.eggs.interfaces.MenuPrinter;
 import com.eggs.interfaces.MenuRepository;
 
 @Component
@@ -23,10 +24,12 @@ public class InmemoryMenuRepository implements MenuRepository {
     private static final Logger logger = LoggerFactory.getLogger(InmemoryMenuRepository.class);
     private List<Menu> menus = new ArrayList<Menu>();
 
+    private MenuPrinter printer;
     @Autowired
     private ApplicationContext ctx;
     
-    public InmemoryMenuRepository() {
+    public InmemoryMenuRepository(MenuPrinter printer) {
+        this.printer = printer;
     }
     
     @PostConstruct
