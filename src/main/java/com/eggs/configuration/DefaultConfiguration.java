@@ -1,14 +1,12 @@
 package com.eggs.configuration;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.eggs.domain.MenuRepositoryReader;
+import com.eggs.impl.InmemoryMenuRepository;
 import com.eggs.interfaces.BaseMenuPrinter;
 
 @Configuration
@@ -17,17 +15,9 @@ import com.eggs.interfaces.BaseMenuPrinter;
 public class DefaultConfiguration {
 
     @Autowired
-    @Qualifier("memory")
-    MenuRepositoryReader reader;
+    InmemoryMenuRepository reader;
 
     @Autowired
     @Qualifier("console")
     BaseMenuPrinter printer;
-
-    @PostConstruct
-    public void wire() {
-        printer.setReader(reader);
-    }
-
-
 }
