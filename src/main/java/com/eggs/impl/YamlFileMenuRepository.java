@@ -16,7 +16,6 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
-import com.eggs.interfaces.MenuPrinter;
 import com.eggs.interfaces.MenuRepository;
 
 @Component
@@ -26,11 +25,9 @@ public class YamlFileMenuRepository implements MenuRepository {
     private String yamlFileName;
     private Logger logger = LoggerFactory.getLogger(getClass());
     private List<Menu> menus = new ArrayList<Menu>();
-    private MenuPrinter printer;
     
-    public YamlFileMenuRepository(MenuPrinter printer) {
+    public YamlFileMenuRepository() {
         this("menus.yml");
-        this.printer = printer;
     }
     
     public YamlFileMenuRepository(String yamlFileName) {
@@ -40,20 +37,19 @@ public class YamlFileMenuRepository implements MenuRepository {
     @PostConstruct
     public void read() {
         logger.debug("read() started ...");
-        Constructor constructor = new Constructor(YamlFileMenuRepository.class);
-        TypeDescription menuRepoDescription = new TypeDescription(YamlFileMenuRepository.class);
-        menuRepoDescription.putListPropertyType("menus", Menu.class);
-
+        Constructor constructor = new Constructor(Menu.class);
         TypeDescription menuDescription = new TypeDescription(Menu.class);
         menuDescription.putListPropertyType("foods", Food.class);
-
         constructor.addTypeDescription(menuDescription);
         Yaml yaml = new Yaml(constructor);
 
         logger.info("reading YAML: " + yamlFileName);
         InputStream stream = getClass().getClassLoader().getResourceAsStream(yamlFileName);
 
-        YamlFileMenuRepository menuRepo = (YamlFileMenuRepository) yaml.load(stream);
+        Iterable<Object> iter = yaml.loadAll(stream);
+        for(Object o : iter){
+            menus.add((Menu)o);
+        }
     }
 
     public List<Menu> getAllmenu() {
