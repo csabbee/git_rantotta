@@ -35,25 +35,22 @@ public class YamlFileMenuRepository implements MenuRepository {
     }
 
     @PostConstruct
-    public MenuRepository read() {
+    public void read() {
         logger.debug("read() started ...");
         Constructor constructor = new Constructor(YamlFileMenuRepository.class);
-        TypeDescription menuRepoDescription = new TypeDescription(MenuRepository.class);
+        TypeDescription menuRepoDescription = new TypeDescription(YamlFileMenuRepository.class);
         menuRepoDescription.putListPropertyType("menus", Menu.class);
 
         TypeDescription menuDescription = new TypeDescription(Menu.class);
         menuDescription.putListPropertyType("foods", Food.class);
 
-        constructor.addTypeDescription(menuRepoDescription);
         constructor.addTypeDescription(menuDescription);
         Yaml yaml = new Yaml(constructor);
 
         logger.info("reading YAML: " + yamlFileName);
         InputStream stream = getClass().getClassLoader().getResourceAsStream(yamlFileName);
 
-        MenuRepository menuRepo = (MenuRepository) yaml.load(stream);
-
-        return menuRepo;
+        YamlFileMenuRepository menuRepo = (YamlFileMenuRepository) yaml.load(stream);
     }
 
     public List<Menu> getAllmenu() {
