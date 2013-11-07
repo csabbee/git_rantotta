@@ -26,6 +26,7 @@ public class AsciiArtPrinter extends BaseMenuPrinter {
     // shadow,lean,standard,starwars,speed,shadow,nipples,lean,big,
     private String font = "doom";
 
+    @Autowired
     public AsciiArtPrinter(MenuRepository menuRepository) {
         super(menuRepository);
     }
