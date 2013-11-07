@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
 import com.eggs.interfaces.BaseMenuPrinter;
+import com.eggs.interfaces.MenuRepository;
 
 @Component
 @Qualifier("console")
@@ -26,7 +27,8 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
     @Autowired
     private MessageSource ctx;
     
-    public ConsoleMenuPrinter() {
+    public ConsoleMenuPrinter(MenuRepository menuRepository) {
+        super(menuRepository);
     }
 
     @Override
