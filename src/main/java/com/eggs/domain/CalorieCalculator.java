@@ -11,7 +11,10 @@ public class CalorieCalculator implements ApplicationListener<MenuEvent> {
     private static final Logger logger = LoggerFactory.getLogger(CalorieCalculator.class);
     
     public void onApplicationEvent(MenuEvent event) {
-        logger.warn("Please calculate calorie for: {}", event.getMenu().toString());
+        for (Food food : event.getMenu().getFoodList()) {
+            logger.warn("Please calculate calorie for: {}", food.getName());
+        }
+        
     }
 
 }
