@@ -2,32 +2,40 @@ package com.eggs.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Component;
 
 import com.eggs.domain.Menu;
 import com.eggs.domain.MenuBuilder;
-import com.eggs.domain.MenuRepositoryReader;
+import com.eggs.domain.MenuEvent;
 import com.eggs.interfaces.MenuRepository;
 
+@Component
 public class CsvFileMenuRepositoryReader implements MenuRepository {
 
     private Logger logger = LoggerFactory.getLogger(CsvFileMenuRepositoryReader.class);
     private String[] restaurantNames;
+    private List<Menu> menus = new ArrayList<Menu>();
     
+    @Autowired
+    private ApplicationEventPublisher publisher;
     @Autowired
     private ApplicationContext ctx;
 
+    public CsvFileMenuRepositoryReader(){
+        this("karcsi", "marcello");
+    }
     public CsvFileMenuRepositoryReader(String... restaurantNames) {
         this.restaurantNames = restaurantNames;
     }
@@ -67,27 +75,26 @@ public class CsvFileMenuRepositoryReader implements MenuRepository {
         builder.food(fields[0].trim(), fields[1].trim(), price);
     }
 
-    public MenuRepository read() {
-        List<Menu> menus = new ArrayList<Menu>();
-
+    @PostConstruct
+    public void read() {
         for (String restaurant : restaurantNames) {
             Menu menu = processSingleRestaurant(restaurant);
-            menus.add(menu);
+            addMenu(menu);
         }
-
-        MenuRepository repo = new MenuRepository(menus);
-        return repo;
     }
 
-    public static void main(String[] args) {
-        CsvFileMenuRepositoryReader reader = new CsvFileMenuRepositoryReader("karcsi", "marcello");
-        ConsoleMenuPrinter printer = new ConsoleMenuPrinter(reader);
-
-        printer.printMenus();
+    public List<Menu> getAllmenu() {
+        return menus;
     }
-
-    public void setApplicationContext(ApplicationContext ctx) throws BeansException {
-        this.ctx = ctx;
-        
+    public void addMenu(Menu menu) {
+        menus.add(menu);
+        publishEvent(menu);
+    }
+    private void publishEvent(Menu menu) {
+        if (publisher!= null) {
+          publisher.publishEvent(new MenuEvent(menu));
+        } else {
+            logger.warn("Menu is new-sed ...");
+        }
     }
 }
