@@ -7,8 +7,6 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +15,7 @@ import org.springframework.stereotype.Component;
 public class Menu {
     private Restaurant restaurant;
     private static final Logger logger = LoggerFactory.getLogger(Menu.class);
-    
-    @Autowired
-    private ApplicationEventPublisher publisher;
+
     
     private Map<String, Food> foodMap = new HashMap<String, Food>();
 
@@ -48,14 +44,5 @@ public class Menu {
 
     public void addFood(Food food) {
         foodMap.put(food.getId(), food);
-        publishEvent(food);
-    }
-
-    private void publishEvent(Food food) {
-        if (publisher!= null) {
-          publisher.publishEvent(new FoodEvent(food));
-        } else {
-            logger.warn("Menu is new-sed ...");
-        }
     }
 }
