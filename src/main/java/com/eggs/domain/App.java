@@ -10,13 +10,6 @@ import com.eggs.console.ConsoleMenuPrinter;
 public class App {
     private static Logger logger = LoggerFactory.getLogger(App.class);
 
-    private static void printReader(MenuRepositoryReader reader) {
-        ConsoleMenuPrinter printer = new ConsoleMenuPrinter();
-        printer.setReader(reader);
-
-        printer.printMenus();
-    }
-
     public static void main(String[] args) {
 
         ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");

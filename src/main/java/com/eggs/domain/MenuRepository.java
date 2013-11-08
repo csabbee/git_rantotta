@@ -1,30 +1,9 @@
 package com.eggs.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This class maintains an immutable list of menus.
- * 
- * @author lalyos
- * 
- */
-public class MenuRepository {
+public interface MenuRepository {
 
-    private List<Menu> menus = new ArrayList<Menu>();
+    public List<Menu> getAllmenu();
 
-    public MenuRepository() {
-    }
-
-    public MenuRepository(List<Menu> menus) {
-        this.menus = menus;
-    }
-
-    public void setMenus(List<Menu> menus) {
-        this.menus = menus;
-    }
-
-    List<Menu> getAllmenu() {
-        return menus;
-    }
 }

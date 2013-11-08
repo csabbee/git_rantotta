@@ -1,7 +1,5 @@
 package com.eggs.configuration;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,25 +8,20 @@ import org.springframework.context.annotation.Profile;
 
 import com.eggs.ascii.AsciiArtPrinter;
 import com.eggs.domain.BaseMenuPrinter;
-import com.eggs.domain.MenuRepositoryReader;
-import com.eggs.impl.PackageScanSupport;
+import com.eggs.domain.MenuRepository;
+import com.eggs.yaml.YamlFileMenuRepositoryReader;
 
 @Configuration
-@ComponentScan(basePackageClasses={PackageScanSupport.class,AsciiArtPrinter.class})
+@ComponentScan(basePackageClasses={AsciiArtPrinter.class, YamlFileMenuRepositoryReader.class})
 @Profile("ascii")
 public class AsciiConfiguration {
 
     @Autowired
     @Qualifier("yaml")
-    MenuRepositoryReader reader;
+    MenuRepository repo;
 
     @Autowired
     @Qualifier("ascii")
     BaseMenuPrinter printer;
 
-    @PostConstruct
-    public void wire() {
-        printer.setReader(reader);
-    }
-    
 }

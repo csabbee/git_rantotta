@@ -15,15 +15,15 @@ import org.springframework.stereotype.Component;
 import com.eggs.domain.Menu;
 import com.eggs.domain.MenuBuilder;
 import com.eggs.domain.MenuRepository;
-import com.eggs.domain.MenuRepositoryReader;
 
 @Component
 @Qualifier("memory")
-public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
+public class InmemoryMenuRepositoryReader implements MenuRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(InmemoryMenuRepositoryReader.class);
     private List<Menu> menus = new ArrayList<Menu>();
-
+    
+    
     @Autowired
     private ApplicationContext ctx;
     
@@ -60,17 +60,4 @@ public class InmemoryMenuRepositoryReader implements MenuRepositoryReader {
     public List<Menu> getAllmenu() {
         return menus;
     }
-
-    public MenuRepository read() {
-        return new MenuRepository(menus);
-    }
-
-    public List<Menu> getMenus() {
-        return menus;
-    }
-
-    public void setMenus(List<Menu> menus) {
-        this.menus = menus;
-    }
-
 }

@@ -1,30 +1,29 @@
-package com.eggs.impl;
+package com.eggs.csv;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 
 import com.eggs.domain.Menu;
 import com.eggs.domain.MenuBuilder;
 import com.eggs.domain.MenuRepository;
-import com.eggs.domain.MenuRepositoryReader;
 
-public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
+public class CsvFileMenuRepositoryReader implements MenuRepository {
 
     private Logger logger = LoggerFactory.getLogger(CsvFileMenuRepositoryReader.class);
     private String[] restaurantNames;
-    
+    List<Menu> menus = new ArrayList<Menu>();
+
     @Autowired
     private ApplicationContext ctx;
 
@@ -67,7 +66,8 @@ public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
         builder.food(fields[0].trim(), fields[1].trim(), price);
     }
 
-    public MenuRepository read() {
+    @PostConstruct
+    public void read() {
         List<Menu> menus = new ArrayList<Menu>();
 
         for (String restaurant : restaurantNames) {
@@ -75,12 +75,10 @@ public class CsvFileMenuRepositoryReader implements MenuRepositoryReader {
             menus.add(menu);
         }
 
-        MenuRepository repo = new MenuRepository(menus);
-        return repo;
     }
 
-    public void setApplicationContext(ApplicationContext ctx) throws BeansException {
-        this.ctx = ctx;
-        
+    public List<Menu> getAllmenu() {
+        return menus;
     }
+
 }

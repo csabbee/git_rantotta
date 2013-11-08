@@ -8,25 +8,12 @@ import org.slf4j.LoggerFactory;
 
 public abstract class BaseMenuPrinter implements MenuPrinter {
 
-    private MenuRepository menuRepository;
-    protected MenuRepositoryReader reader;
+    protected MenuRepository menuRepository;
     private static final Logger logger = LoggerFactory.getLogger(BaseMenuPrinter.class);
 
     public BaseMenuPrinter(MenuRepository menuRepository) {
         logger.debug("## BASE constr called: {}", menuRepository);
         this.menuRepository = menuRepository;
-    }
-
-    public void init() {
-        menuRepository = reader.read();
-    }
-    
-    public void setReader(MenuRepositoryReader reader) {
-        this.reader = reader;
-        init();
-    }
-    public BaseMenuPrinter() {
-        // TODO Auto-generated constructor stub
     }
 
     /*

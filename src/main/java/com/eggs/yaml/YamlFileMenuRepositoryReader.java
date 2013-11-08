@@ -1,6 +1,10 @@
-package com.eggs.impl;
+package com.eggs.yaml;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,42 +17,43 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
 import com.eggs.domain.MenuRepository;
-import com.eggs.domain.MenuRepositoryReader;
 
 @Component
 @Qualifier("yaml")
-public class YamlFileMenuRepositoryReader implements MenuRepositoryReader {
+public class YamlFileMenuRepositoryReader implements MenuRepository {
 
     private String yamlFileName;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    List<Menu> menus = new ArrayList<Menu>();
     public YamlFileMenuRepositoryReader() {
-        this("menus.yml");
+        this("karcsi.yml");
     }
     
     public YamlFileMenuRepositoryReader(String yamlFileName) {
         this.yamlFileName = yamlFileName;
     }
 
-    public MenuRepository read() {
+    @PostConstruct
+    public void read() {
         logger.debug("read() started ...");
-        Constructor constructor = new Constructor(MenuRepository.class);
-        TypeDescription menuRepoDescription = new TypeDescription(MenuRepository.class);
-        menuRepoDescription.putListPropertyType("menus", Menu.class);
+        Constructor constructor = new Constructor(Menu.class);
 
         TypeDescription menuDescription = new TypeDescription(Menu.class);
         menuDescription.putListPropertyType("foods", Food.class);
 
-        constructor.addTypeDescription(menuRepoDescription);
         constructor.addTypeDescription(menuDescription);
         Yaml yaml = new Yaml(constructor);
 
         logger.info("reading YAML: " + yamlFileName);
         InputStream stream = getClass().getClassLoader().getResourceAsStream(yamlFileName);
 
-        MenuRepository menuRepo = (MenuRepository) yaml.load(stream);
+        Menu menu = (Menu) yaml.load(stream);
+        menus.add(menu);
+    }
 
-        return menuRepo;
+    public List<Menu> getAllmenu() {
+        return menus;
     }
 
 }

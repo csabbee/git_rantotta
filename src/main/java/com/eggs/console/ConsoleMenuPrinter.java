@@ -8,13 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import com.eggs.domain.BaseMenuPrinter;
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
-import com.eggs.domain.MenuRepositoryReader;
+import com.eggs.domain.MenuRepository;
 
 @Component
 @Qualifier("console")
@@ -27,8 +26,10 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
 
     @Autowired
     private MessageSource ctx;
-    
-    public ConsoleMenuPrinter() {
+
+    @Autowired
+    public ConsoleMenuPrinter(MenuRepository menuRepository) {
+        super(menuRepository);
     }
 
     @Override
@@ -57,11 +58,4 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
             System.out.format(" %-20s | %10.2f %n", food.getName(), food.getPrice());
         }
     }
-    public Locale getLocale() {
-        return locale;
-    }
-    public void setLocale(Locale locale) {
-        this.locale = locale;
-    }
-
 }
