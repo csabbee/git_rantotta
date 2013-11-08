@@ -10,7 +10,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
-@ComponentScan(basePackageClasses=com.eggs.domain.App.class)
+@ComponentScan(basePackageClasses=com.eggs.domain.AnnotatedApp.class)
 @PropertySource("classpath:breakfast.properties")
 @Import({AsciiConfiguration.class, DefaultConfiguration.class})
 public class MenuConfiguration {

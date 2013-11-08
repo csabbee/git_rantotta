@@ -1,16 +1,15 @@
 package com.eggs.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.eggs.impl.InmemoryMenuRepository;
 import com.eggs.interfaces.BaseMenuPrinter;
+import com.eggs.repo.inmemory.InmemoryMenuRepository;
 
 @Configuration
-@ComponentScan(basePackageClasses={com.eggs.impl.ImplPackageScanSupport.class,com.eggs.console.ConsoleMenuPrinter.class})
+@ComponentScan(basePackageClasses={com.eggs.repo.inmemory.InmemoryMenuRepository.class,com.eggs.console.ConsoleMenuPrinter.class})
 @Profile("default")
 public class DefaultConfiguration {
 
@@ -18,6 +17,6 @@ public class DefaultConfiguration {
     InmemoryMenuRepository reader;
 
     @Autowired
-    @Qualifier("console")
     BaseMenuPrinter printer;
+
 }
