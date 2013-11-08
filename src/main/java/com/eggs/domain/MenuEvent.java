@@ -2,14 +2,14 @@ package com.eggs.domain;
 
 import org.springframework.context.ApplicationEvent;
 
-public class FoodEvent extends ApplicationEvent {
+public class MenuEvent extends ApplicationEvent {
 
-    public FoodEvent(Food food) {
-        super(food);
+    public MenuEvent(Menu menu) {
+        super(menu);
     }
     
-    public Food getFood() {
-        return (Food) getSource();
+    public Menu getMenu() {
+        return (Menu) getSource();
     }
     
 }
