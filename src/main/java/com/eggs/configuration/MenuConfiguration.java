@@ -12,7 +12,8 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 @Configuration
 @ComponentScan(basePackageClasses=com.eggs.domain.AnnotatedApp.class)
 @PropertySource("classpath:breakfast.properties")
-@Import({AsciiConfiguration.class, DefaultConfiguration.class, CsvConfiguration.class})
+@Import({AsciiConfiguration.class, DefaultConfiguration.class, 
+         CsvConfiguration.class, CompundConfiguration.class})
 public class MenuConfiguration {
 
     @Bean
