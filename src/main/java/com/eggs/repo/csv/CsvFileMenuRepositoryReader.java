@@ -1,4 +1,4 @@
-package com.eggs.impl;
+package com.eggs.repo.csv;
 
 import java.io.BufferedReader;
 import java.io.IOException;

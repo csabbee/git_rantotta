@@ -1,4 +1,4 @@
-package com.eggs.impl;
+package com.eggs.repo.inmemory;
 
 import java.util.ArrayList;
 import java.util.List;

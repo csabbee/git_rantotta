@@ -1,4 +1,4 @@
-package com.eggs.impl;
+package com.eggs.repo.yaml;
 
 import java.io.InputStream;
 import java.util.ArrayList;
