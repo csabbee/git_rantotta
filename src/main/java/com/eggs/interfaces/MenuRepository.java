@@ -11,6 +11,7 @@ import com.eggs.domain.Menu;
  * 
  */
 public interface MenuRepository {
-
-    List<Menu> getAllmenu();
+    
+    public List<Menu> getAllmenu();
+    public void addMenu(Menu menu);
 }
