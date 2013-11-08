@@ -6,11 +6,11 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class VegetarianMenuSelector implements ApplicationListener<FoodEvent>{
+public class VegetarianMenuSelector implements ApplicationListener<MenuEvent>{
 
     private static final Logger logger = LoggerFactory.getLogger(VegetarianMenuSelector.class);
-    public void onApplicationEvent(FoodEvent event) {
-        logger.error("pleace decide weather {} is vegetarian !", event.getFood().getName());
+    public void onApplicationEvent(MenuEvent event) {
+        logger.error("pleace decide weather {} is vegetarian !", event.getMenu().toString());
         
     }
 

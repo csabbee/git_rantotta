@@ -6,12 +6,12 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CalorieCalculator implements ApplicationListener<FoodEvent> {
+public class CalorieCalculator implements ApplicationListener<MenuEvent> {
 
     private static final Logger logger = LoggerFactory.getLogger(CalorieCalculator.class);
     
-    public void onApplicationEvent(FoodEvent event) {
-        logger.warn("Please calculate calorie for: {}", event.getFood().getName());
+    public void onApplicationEvent(MenuEvent event) {
+        logger.warn("Please calculate calorie for: {}", event.getMenu().toString());
     }
 
 }
