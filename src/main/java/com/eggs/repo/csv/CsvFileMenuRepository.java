@@ -22,9 +22,9 @@ import com.eggs.domain.MenuEvent;
 import com.eggs.interfaces.MenuRepository;
 
 @Component
-public class CsvFileMenuRepositoryReader implements MenuRepository {
+public class CsvFileMenuRepository implements MenuRepository {
 
-    private Logger logger = LoggerFactory.getLogger(CsvFileMenuRepositoryReader.class);
+    private Logger logger = LoggerFactory.getLogger(CsvFileMenuRepository.class);
     private String[] restaurantNames;
     private List<Menu> menus = new ArrayList<Menu>();
     
@@ -33,10 +33,10 @@ public class CsvFileMenuRepositoryReader implements MenuRepository {
     @Autowired
     private ApplicationContext ctx;
 
-    public CsvFileMenuRepositoryReader(){
+    public CsvFileMenuRepository(){
         this("karcsi", "marcello");
     }
-    public CsvFileMenuRepositoryReader(String... restaurantNames) {
+    public CsvFileMenuRepository(String... restaurantNames) {
         this.restaurantNames = restaurantNames;
     }
 
