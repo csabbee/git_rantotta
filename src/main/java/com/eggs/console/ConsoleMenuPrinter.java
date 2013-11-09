@@ -28,7 +28,7 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
     private MessageSource ctx;
     
     @Autowired
-    public ConsoleMenuPrinter(MenuRepository menuRepository) {
+    public ConsoleMenuPrinter(MenuRepository... menuRepository) {
         super(menuRepository);
     }
 
