@@ -16,10 +16,10 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import com.eggs.api.MenuRepository;
 import com.eggs.domain.Menu;
 import com.eggs.domain.MenuBuilder;
 import com.eggs.domain.MenuEvent;
-import com.eggs.interfaces.MenuRepository;
 
 @Component
 public class CsvFileMenuRepository implements MenuRepository {

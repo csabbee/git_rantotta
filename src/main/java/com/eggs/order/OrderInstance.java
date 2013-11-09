@@ -1,11 +1,13 @@
-package com.eggs;
+package com.eggs.order;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+
+import com.eggs.domain.Address;
 /**
  * This class provides an interface to take the orders
  * @author Csaba_Valyi
@@ -15,7 +17,7 @@ public class OrderInstance {
     @NotNull @Length(min=10,max=40)
     private String customer;
     private Address delivery;
-    private List<OrderItem> item;
+    private List<OrderItem> item = new ArrayList<OrderItem>();
     
     public OrderInstance(String customer, Address delivery) {
         this.customer = customer;

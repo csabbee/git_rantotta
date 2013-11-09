@@ -16,10 +16,10 @@ import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
+import com.eggs.api.MenuRepository;
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
 import com.eggs.domain.MenuEvent;
-import com.eggs.interfaces.MenuRepository;
 
 @Component
 @Qualifier("yaml")

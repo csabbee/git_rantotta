@@ -1,4 +1,4 @@
-package com.eggs.interfaces;
+package com.eggs.api;
 
 import java.util.ArrayList;
 import java.util.List;

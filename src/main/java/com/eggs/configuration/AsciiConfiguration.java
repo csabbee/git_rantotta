@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.eggs.interfaces.BaseMenuPrinter;
+import com.eggs.api.BaseMenuPrinter;
 import com.eggs.repo.yaml.YamlFileMenuRepository;
 
 @Configuration

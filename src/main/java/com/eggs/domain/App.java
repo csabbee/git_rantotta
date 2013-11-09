@@ -5,17 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.eggs.console.ConsoleMenuPrinter;
-import com.eggs.interfaces.MenuPrinter;
+import com.eggs.api.MenuPrinter;
 
 public class App {
     private static Logger logger = LoggerFactory.getLogger(App.class);
 
-    private static void printReader(MenuRepositoryReader reader) {
-        ConsoleMenuPrinter printer = new ConsoleMenuPrinter();
-        printer.setReader(reader);
-        printer.printMenus();
-    }
 
     public static void main(String[] args) {
 

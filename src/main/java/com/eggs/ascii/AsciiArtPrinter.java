@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import com.eggs.api.BaseMenuPrinter;
+import com.eggs.api.MenuRepository;
 import com.eggs.domain.Food;
 import com.eggs.domain.Menu;
-import com.eggs.interfaces.BaseMenuPrinter;
-import com.eggs.interfaces.MenuRepository;
 import com.github.lalyos.jfiglet.FigletFont;
 
 @Component

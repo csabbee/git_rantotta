@@ -1,4 +1,4 @@
-package com.eggs;
+package com.eggs.order;
 
 import javax.validation.constraints.NotNull;
 
