@@ -6,16 +6,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.eggs.interfaces.MenuPrinter;
-import com.eggs.repo.compound.CompoundMenuRepository;
+import com.eggs.interfaces.MenuRepository;
 
 @Configuration
 @ComponentScan(basePackageClasses={com.eggs.repo.ComponentScanHelper.class, 
-               com.eggs.compound.CompoundConsoleMenuPrinter.class})
+               com.eggs.ascii.AsciiArtPrinter.class})
 @Profile("compound")
 public class CompoundConfiguration {
 
     @Autowired
-    CompoundMenuRepository repo;
+    MenuRepository repo;
     
     @Autowired
     MenuPrinter printer;
