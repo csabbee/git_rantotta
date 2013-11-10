@@ -6,6 +6,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.eggs.domain.Address;
 /**
@@ -13,17 +15,18 @@ import com.eggs.domain.Address;
  * @author Csaba_Valyi
  *
  */
+@Component
 public class OrderInstance {
     @NotNull @Length(min=10,max=40)
     private String customer;
     private Address delivery;
     private List<OrderItem> items = new ArrayList<OrderItem>();
-    
+
+    @Autowired
     public OrderInstance(String customer, Address delivery) {
         this.customer = customer;
         this.delivery = delivery;
     }
-    
     public String getCustomer() {
         return customer;
     }
@@ -57,6 +60,6 @@ public class OrderInstance {
         for (OrderItem orderitem : items) {
             orderitems+= orderitem + "\n";
         }
-        return "OrderInstance [customer=" + customer + ", delivery=" + delivery + ", items=" + orderitems + "]";
+        return "OrderInstance [customer=" + customer + ", delivery=" + delivery + ", \nitems:\n" + orderitems + "]";
     }
 }
