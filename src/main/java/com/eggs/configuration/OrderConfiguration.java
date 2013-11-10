@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,9 @@ import com.eggs.order.OrderItem;
                                    com.eggs.domain.AnnotatedApp.class})
 public class OrderConfiguration {
   
+    @Autowired
+    private OrderInstance orderinstance;
+    
     @Bean
     public Address address(){
         Address address = new Address();
@@ -30,11 +34,10 @@ public class OrderConfiguration {
     }
     
     @Bean
-    public OrderInstance orderinstance(){
-        return new OrderInstance("Valyi Csaba", address());
+    public String sustomer(){
+        return "Valyi Csaba";
     }
     
-    @Bean
     public List<OrderItem> orders(){
         List<OrderItem> orders = new ArrayList<OrderItem>();
         orders.add(new OrderItem("k1", 4));
@@ -47,6 +50,6 @@ public class OrderConfiguration {
     
     @PostConstruct
     public void init(){
-        orderinstance().setItems(orders());
+        orderinstance.setItems(orders());
     }
 }
