@@ -17,7 +17,7 @@ public class OrderInstance {
     @NotNull @Length(min=10,max=40)
     private String customer;
     private Address delivery;
-    private List<OrderItem> item = new ArrayList<OrderItem>();
+    private List<OrderItem> items = new ArrayList<OrderItem>();
     
     public OrderInstance(String customer, Address delivery) {
         this.customer = customer;
@@ -38,16 +38,25 @@ public class OrderInstance {
         this.delivery = delivery;
     }
     @Valid
-    public List<OrderItem> getItem() {
-        return item;
+    public List<OrderItem> getItems() {
+        return items;
     }
-    public void setItem(List<OrderItem> item) {
-        this.item = item;
+    public void setItems(List<OrderItem> item) {
+        this.items = item;
     }
     public void addOrderItem(OrderItem orderItem){
-        item.add(orderItem);
+        items.add(orderItem);
     }
     public void addOrderItem(String foodId, int quantity){
         addOrderItem(new OrderItem(foodId, quantity));
+    }
+
+    @Override
+    public String toString() {
+        String orderitems = "";
+        for (OrderItem orderitem : items) {
+            orderitems+= orderitem + "\n";
+        }
+        return "OrderInstance [customer=" + customer + ", delivery=" + delivery + ", items=" + orderitems + "]";
     }
 }
