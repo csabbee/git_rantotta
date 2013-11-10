@@ -34,7 +34,7 @@ public class OrderConfiguration {
     }
     
     @Bean
-    public String sustomer(){
+    public String customer(){
         return "Valyi Csaba";
     }
     
