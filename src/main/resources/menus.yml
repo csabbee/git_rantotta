@@ -6,16 +6,16 @@ restaurant:
     city: Budapest
 foodList:
   - id: k1
-    name: Pacal
+    name: Ham & Eggs
     price: 370
   - id: k2
-    name: Palacsinta
+    name: Omlette du Fromage
     price: 480
   - id: k3
-    name: Bableves
+    name: Velos Pacal
     price: 820
   - id: k4
-    name: rantotta
+    name: Rantotta
     price: 470
 ---
 restaurant:
@@ -26,11 +26,11 @@ restaurant:
     city: Budapest
 foodList:
   - id: m1
-    name: Margherita
-    price: 250
+    name: Plain Pizza
+    price: 550
   - id: m2
-    name: grilled cat
-    price: 890
+    name: Grilled gorilla
+    price: 8890
   - id: m3
-    name: ostriga
+    name: Langusta
     price: 1490
