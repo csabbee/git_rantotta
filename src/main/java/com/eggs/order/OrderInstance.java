@@ -1,11 +1,14 @@
 package com.eggs.order;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +23,8 @@ public class OrderInstance {
     @NotNull @Length(min=10,max=40)
     private String customer;
     private Address delivery;
-    private List<OrderItem> items = new ArrayList<OrderItem>();
+    private Map<String, OrderItem> items = new HashMap<String, OrderItem>();
+    private final Logger logger = LoggerFactory.getLogger(OrderInstance.class);
 
     @Autowired
     public OrderInstance(String customer, Address delivery) {
@@ -40,26 +44,29 @@ public class OrderInstance {
     public void setDelivery(Address delivery) {
         this.delivery = delivery;
     }
-    @Valid
-    public List<OrderItem> getItems() {
-        return items;
-    }
-    public void setItems(List<OrderItem> item) {
-        this.items = item;
-    }
+
     public void addOrderItem(OrderItem orderItem){
-        items.add(orderItem);
+        logger.debug("adding orderitem: {} ",orderItem);
+        if(items.containsKey(orderItem.getFoodId())){
+            logger.debug("the item is in the map");
+            OrderItem item = items.get(orderItem.getFoodId());
+            item.setQuantity(item.getQuantity()+orderItem.getQuantity());
+            items.put(item.getFoodId(), item);
+        } else {
+            items.put(orderItem.getFoodId(), orderItem);
+        }
     }
     public void addOrderItem(String foodId, int quantity){
         addOrderItem(new OrderItem(foodId, quantity));
     }
-
+    public Map<String, OrderItem> getItems() {
+        return items;
+    }
+    public void setItems(Map<String, OrderItem> items) {
+        this.items = items;
+    }
     @Override
     public String toString() {
-        String orderitems = "";
-        for (OrderItem orderitem : items) {
-            orderitems+= orderitem + "\n";
-        }
-        return "OrderInstance [customer=" + customer + ", delivery=" + delivery + ", \nitems:\n" + orderitems + "]";
+        return String.format(" %-20s%n %-20s%n items:%n %s",customer,delivery,items);
     }
 }
