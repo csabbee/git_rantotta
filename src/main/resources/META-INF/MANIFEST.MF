@@ -1,2 +1,2 @@
-Main-Class: com.eggs.App
+Main-Class: org.springframework.shell.Bootstrap
 Ebed: L1
