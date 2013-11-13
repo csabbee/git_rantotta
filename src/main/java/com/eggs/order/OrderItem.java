@@ -3,6 +3,7 @@ package com.eggs.order;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 /**
  * This class represents an item in an order
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
+@Scope("prototype")
 public class OrderItem {
     private int quantity;
     private String foodId;
@@ -37,7 +39,7 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return "OrderItem [quantity=" + quantity + ", foodId=" + foodId + "]";
+        return String.format(" foodId=%-3s, quantity=%-3s %n", foodId, quantity);
     }
     
 
