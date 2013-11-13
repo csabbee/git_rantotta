@@ -1,7 +1,8 @@
 package com.eggs.configuration;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,19 +38,47 @@ public class OrderConfiguration {
     public String customer(){
         return "Valyi Csaba";
     }
-    
-    public List<OrderItem> orders(){
-        List<OrderItem> orders = new ArrayList<OrderItem>();
-        orders.add(new OrderItem("k1", 4));
-        orders.add(new OrderItem("m1", 2));
-        orders.add(new OrderItem("k3", 1));
-        orders.add(new OrderItem("k2", 3));
-        orders.add(new OrderItem("k3", 11));
+    @Bean
+    public OrderItem item1(){
+        return new OrderItem("k1", 4);
+    }
+    @Bean
+    public OrderItem item2(){
+        return new OrderItem("m1", 2);
+    }
+    @Bean
+    public OrderItem item3(){
+        return new OrderItem("k3", 3);
+    }
+    @Bean
+    public OrderItem item4(){
+        return new OrderItem("k2", 3);
+    }
+    @Bean
+    public OrderItem item5(){
+        return new OrderItem("k3", 11);
+    }
+    @Bean
+    public OrderItem item6(){
+        return new OrderItem("m1", 6);
+    }
+    public Map<String, OrderItem> orders(){
+        Map<String, OrderItem> orders = new HashMap<String, OrderItem>();
+        orders.put("k1", new OrderItem("k1", 4));
+        orders.put("m1", new OrderItem("m1", 2));
+        orders.put("k3", new OrderItem("k3", 3));
+        orders.put("k2", new OrderItem("k2", 3));
+        orders.put("k3", new OrderItem("k3", 11));
         return orders;
     }
     
     @PostConstruct
     public void init(){
-        orderinstance.setItems(orders());
+        orderinstance.addOrderItem(item1());
+        orderinstance.addOrderItem(item2());
+        orderinstance.addOrderItem(item3());
+        orderinstance.addOrderItem(item4());
+        orderinstance.addOrderItem(item5());
+        orderinstance.addOrderItem(item6());
     }
 }
