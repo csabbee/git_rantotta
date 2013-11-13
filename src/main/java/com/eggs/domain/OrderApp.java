@@ -12,7 +12,7 @@ public class OrderApp {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(OrderConfiguration.class);
         
         OrderInstance oi = ctx.getBean(OrderInstance.class);
-        System.out.format("oi=%s", oi);
+        System.out.format("====%nOrder:%n%s%n====", oi);
         OrderTaker ordetaker = new OrderTaker();
     }
 }

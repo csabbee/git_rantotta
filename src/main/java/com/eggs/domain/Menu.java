@@ -48,6 +48,6 @@ public class Menu {
 
     @Override
     public String toString() {
-        return "[" + foodMap + "]";
+        return String.format(" %s", foodMap);
     }
 }

@@ -69,7 +69,7 @@ public class Food {
 
     @Override
     public String toString() {
-        return "Food [id=" + id + ", name=" + name + ", price=" + price + "]\n";
+        return String.format("[id: %-3s, name: %-25s, price: %-6s]%n", id, name, price);
     }
 
 }
