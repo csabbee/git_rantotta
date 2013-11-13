@@ -45,4 +45,9 @@ public class Menu {
     public void addFood(Food food) {
         foodMap.put(food.getId(), food);
     }
+
+    @Override
+    public String toString() {
+        return "[" + foodMap + "]";
+    }
 }
