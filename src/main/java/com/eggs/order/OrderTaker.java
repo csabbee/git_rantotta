@@ -3,8 +3,6 @@ package com.eggs.order;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +32,14 @@ public class OrderTaker {
         }
     }
 
-    @PostConstruct
-    public void printMenus(){
+    public String printMenus(){
+        String menus = "";
         for (MenuRepository repo : repos) {
             for (Menu menu : repo.getAllmenu()) {
-                System.out.format("%s %n", menu);
+                menus+=String.format("%s %n", menu);
             }
         }
+        return menus;
     }
     
     public void addOrder(OrderInstance orderinstance){
