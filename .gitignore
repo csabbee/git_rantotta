@@ -1,6 +1,9 @@
+.gitignore
 .classpath
 .project
 .settings
 target
-
 .springBeans
+dependency-reduced-pom.xml
+spring-shell.log
+test.txt
