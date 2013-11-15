@@ -22,7 +22,6 @@ public class OrderRepository {
     public OrderRepository(OrderInstance... orderinstances){
         for (OrderInstance orderInstance : orderinstances) {
             orderrepo.add(orderInstance);
-            logger.debug(orderInstance.toString());
         }
     }
 
@@ -33,6 +32,13 @@ public class OrderRepository {
     public void setOrderrepo(List<OrderInstance> orderrepo) {
         this.orderrepo = orderrepo;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        StringBuilder orderinstances = new StringBuilder();
+        for (OrderInstance orderinstance : orderrepo) {
+            orderinstances.append(orderinstance);
+        }
+        return orderinstances.toString();
+    }
 }
