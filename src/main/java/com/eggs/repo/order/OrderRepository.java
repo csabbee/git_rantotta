@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +17,8 @@ public class OrderRepository {
     private List<OrderInstance> orderintances = new ArrayList<OrderInstance>();
     private final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
     
-    @Autowired
+    public OrderRepository(){}
+    
     public OrderRepository(OrderInstance... orderinstances){
         for (OrderInstance orderInstance : orderinstances) {
             this.orderintances.add(orderInstance);
@@ -37,7 +37,7 @@ public class OrderRepository {
     public String toString() {
         StringBuilder everyorderinstance = new StringBuilder();
         for (OrderInstance orderinstance : orderintances) {
-            everyorderinstance.append(orderinstance);
+            everyorderinstance.append(orderinstance+"\n");
         }
         return everyorderinstance.toString();
     }

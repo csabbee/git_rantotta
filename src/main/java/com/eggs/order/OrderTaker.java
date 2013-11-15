@@ -43,7 +43,7 @@ public class OrderTaker {
     }
     
     public void addOrder(OrderInstance orderinstance){
-        orderrepo.getOrderrepo().add(orderinstance);
+        orderrepo.getOrderIntances().add(orderinstance);
     }
 
     public OrderRepository getOrderrepo() {
