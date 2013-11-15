@@ -1,5 +1,10 @@
 package com.eggs.repo;
 
-public class ComponentScanHelper {
+import org.springframework.jmx.access.InvalidInvocationException;
 
+public final class ComponentScanHelper {
+
+    private ComponentScanHelper(){
+        throw new InvalidInvocationException("Do not instantiate");
+    }
 }
