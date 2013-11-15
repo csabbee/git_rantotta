@@ -48,6 +48,10 @@ public class Menu {
 
     @Override
     public String toString() {
-        return String.format(" %s", foodMap);
+        StringBuilder menu = new StringBuilder();
+        for (Food menuelement : foodMap.values()) {
+            menu.append(menuelement);
+        }
+        return String.format("%s", menu);
     }
 }
