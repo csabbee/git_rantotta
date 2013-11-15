@@ -13,6 +13,8 @@ import com.eggs.configuration.MenuConfiguration;
 import com.eggs.domain.Address;
 import com.eggs.order.OrderInstance;
 import com.eggs.order.OrderItem;
+import com.eggs.order.OrderPrinter;
+import com.eggs.order.OrderState;
 import com.eggs.order.OrderTaker;
 
 @Component
@@ -29,12 +31,14 @@ public class OrderCommands implements CommandMarker {
     private String customer;
     private OrderInstance orderinstance;
     private OrderItem orderitem;
+    private OrderPrinter orderprinter;
     
     
     @PostConstruct
     public void init(){
         ctx = new AnnotationConfigApplicationContext(MenuConfiguration.class);
         ordertaker = ctx.getBean(OrderTaker.class);
+        orderprinter = ctx.getBean(OrderPrinter.class);
     }
     
     @CliAvailabilityIndicator({"createOrder"})
@@ -80,27 +84,28 @@ public class OrderCommands implements CommandMarker {
         return customer;
     }
     
-    @CliCommand(value="createOrder", help="(*! setAddress and setCustomer must be executed first !*) " 
-                                    + "Create the order instance")
+    @CliCommand(value="createOrder", help="(*! setAddress and setCustomer must be executed first. "
+                                    + " Will fail if there is an open order already !*) - " 
+                                    + "Creates the order instance")
     public void order(){       
         orderinstance = new OrderInstance(customer, address, ordertaker.getNumberOfOrders());
         thereIsAnOpenOrder = true;
     }
     
     @CliCommand(value="addFood", help="(*! createOrder must be executed first !*) "
-                                    + "Add food to the order instance")
+                                    + "- Add food to the order instance")
     public void addFood(
         @CliOption(key = {"id"}, mandatory = true) final String id,
         @CliOption(key = {"quantity"}, mandatory = false, help="if not given it will be 1",
-                            specifiedDefaultValue="1") final String quantity){
+                            specifiedDefaultValue="1") final int quantity){
         
-        orderitem = new OrderItem(id, Integer.parseInt(quantity));
+        orderitem = new OrderItem(id, quantity);
         orderinstance.addOrderItem(orderitem);
         thereIsFoodInTheOrder = true;
     }
     
     @CliCommand(value="showOrder", help="(*! createOrder must be executed first !*) " +
-                                    "Showing the current customer's order")
+                                    "- Showing the current customer's order")
     public String showOrder(){
         return orderinstance.toString();
     }
@@ -115,6 +120,16 @@ public class OrderCommands implements CommandMarker {
     
     @CliCommand(value="listOrders", help="List the orders, return blank line if there is no order")
     public String listOrders(){
-        return ordertaker.getOrderrepo().getOrderIntances().isEmpty() ? "" : ordertaker.getOrderrepo().toString();
+        return ordertaker.getOrderrepo().getOrderIntances().isEmpty() ? "" : orderprinter.printOrders();
+    }
+    
+    @CliCommand(value="setOrderState", help="Sets the state of the order")
+    public String setOrderState(
+        @CliOption(key={"id"}, mandatory=true, help="Give the ID of the OrderInstance") final int id,
+        @CliOption(key={"state"}, mandatory=true, help="Can be: PENDING, IN_DELIVERY, DELIVERED, CLOSED") final OrderState orderstate
+            ){ 
+        OrderInstance oi = ordertaker.findOrderInstance(id);
+        oi.setOrderstate(orderstate);
+        return "customer: "+oi.getCustomer();
     }
 }
