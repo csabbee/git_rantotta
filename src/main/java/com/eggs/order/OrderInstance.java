@@ -37,7 +37,7 @@ public class OrderInstance {
         this.customer = customer;
         this.delivery = delivery;
         this.id = id;
-        this.orderstate = OrderState.pending;
+        this.orderstate = OrderState.PENDING;
     }
     public String getCustomer() {
         return customer;
@@ -75,12 +75,19 @@ public class OrderInstance {
     }
     @Override
     public String toString() {
-        return String.format(" orderid:%-2s%n %-20s%n %-20s%n items:%n %s",id,customer,delivery,items);
+        StringBuilder orderitems = new StringBuilder();
+        for (OrderItem orderitem : items.values()) {
+            orderitems.append(orderitem);
+        }
+        return String.format(" orderid:%-2s%n customer:%-20s%n delivery address:%-20s%n items:%n%s",id,customer,delivery,orderitems);
     }
     public OrderState getOrderstate() {
         return orderstate;
     }
     public void setOrderstate(OrderState orderstate) {
         this.orderstate = orderstate;
+    }
+    public int getId() {
+        return id;
     }
 }
