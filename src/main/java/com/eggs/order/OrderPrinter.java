@@ -16,4 +16,18 @@ public class OrderPrinter {
     public OrderPrinter(OrderRepository orderrepo){
         this.orderrepo = orderrepo;
     }
+    
+    public String printOrders(){
+        StringBuilder orders = new StringBuilder();
+        for (OrderInstance orderinstance : orderrepo.getOrderIntances()) {
+            orders.append(String.format(" orderid: %s orderstate: %s%n", orderinstance.getId(), orderinstance.getOrderstate()));
+            orders.append(String.format(" customer: %s%n", orderinstance.getCustomer()));
+            orders.append(String.format(" delivery address: %s%n",orderinstance.getDelivery()));
+            for (OrderItem orderitem : orderinstance.getItems().values()) {
+                orders.append(orderitem);
+            }
+            
+        }
+        return String.format(" orders:%n%s", orders);
+    }
 }
