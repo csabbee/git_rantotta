@@ -3,6 +3,7 @@ package com.eggs.command;
 import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.shell.core.CommandMarker;
 import org.springframework.shell.core.annotation.CliAvailabilityIndicator;
 import org.springframework.shell.core.annotation.CliCommand;
@@ -18,6 +19,7 @@ import com.eggs.order.OrderState;
 import com.eggs.order.OrderTaker;
 
 @Component
+@Lazy
 public class OrderCommands implements CommandMarker {
 
     private boolean addressIsSet  = false;
