@@ -6,12 +6,14 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.eggs.order.OrderInstance;
 
 @Component
 @Lazy
+@Scope("singleton")
 public class OrderRepository {
 
     private List<OrderInstance> orderintances = new ArrayList<OrderInstance>();
