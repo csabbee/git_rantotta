@@ -1,38 +1,120 @@
-package com.eggs.domain;
+package com.eggs.command;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.PostConstruct;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.shell.core.CommandMarker;
 import org.springframework.shell.core.annotation.CliAvailabilityIndicator;
 import org.springframework.shell.core.annotation.CliCommand;
 import org.springframework.shell.core.annotation.CliOption;
 import org.springframework.stereotype.Component;
 
+import com.eggs.configuration.MenuConfiguration;
+import com.eggs.domain.Address;
+import com.eggs.order.OrderInstance;
+import com.eggs.order.OrderItem;
 import com.eggs.order.OrderTaker;
 
 @Component
 public class OrderCommands implements CommandMarker {
 
-    @Autowired
-    OrderTaker ordertaker;
+    private boolean addressIsSet  = false;
+    private boolean customerIsSet = false;
+    private boolean thereIsAnOpenOrder = false;
+    private boolean thereIsFoodInTheOrder = false;
     
-    @CliAvailabilityIndicator({"hw simple"})
-    public boolean isCommandAvailable() {
-      return true;
-    }
-
-    @CliCommand(value = "hw simple", help = "Print a simple hello world message")
-    public String simple(
-      @CliOption(key = { "message" }, mandatory = true, help = "The hello world message") final String message,
-      @CliOption(key = { "location" }, mandatory = false, help = "Where you are saying hello", specifiedDefaultValue="At work") 
-                   final String location) {
-
-    return "Message = [" + message + "] Location = [" + location + "]";
+    private AnnotationConfigApplicationContext ctx;
+    private OrderTaker ordertaker;
+    private Address address;
+    private String customer;
+    private OrderInstance orderinstance;
+    private OrderItem orderitem;
+    
+    
+    @PostConstruct
+    public void init(){
+        ctx = new AnnotationConfigApplicationContext(MenuConfiguration.class);
+        ordertaker = ctx.getBean(OrderTaker.class);
     }
     
-    @CliCommand("listMenus")
+    @CliAvailabilityIndicator({"createOrder"})
+    public boolean isOrderAvailable(){
+        return addressIsSet && customerIsSet && !thereIsAnOpenOrder ? true : false;
+    }
+    
+    @CliAvailabilityIndicator({"addFood", "showOrder"})
+    public boolean isAddFoodAvailable(){
+        return thereIsAnOpenOrder ? true : false;
+    }
+    
+    @CliAvailabilityIndicator({"submitOrder"})
+    public boolean isSubmitOrderAvailable(){
+        return thereIsFoodInTheOrder ? true : false;
+    }
+    
+    
+    @CliCommand(value="listMenus", help="List the available menus")
     public String listMenus(){
         return ordertaker.printMenus();
     }
     
+    @CliCommand(value="setAddress", help="Setting the address")
+    public String address(
+        @CliOption(key = {"zip"},    mandatory = true) final String zip,
+        @CliOption(key = {"city"},   mandatory = true) final String city,
+        @CliOption(key = {"street"}, mandatory = true) final String street){
+        
+            address = new Address();
+            address.setCity(city);
+            address.setStreet(street);
+            address.setZip(zip);
+            addressIsSet = true;
+            return address.toString();
+    }
     
+    @CliCommand(value="setCustomer", help="Setting the customer's name")
+    public String customer(
+            @CliOption(key = {"name"}, mandatory = true) final String name){
+        customer = name;
+        customerIsSet = true;
+        return customer;
+    }
+    
+    @CliCommand(value="createOrder", help="(*! setAddress and setCustomer must be executed first !*) " 
+                                    + "Create the order instance")
+    public void order(){       
+        orderinstance = new OrderInstance(customer, address, ordertaker.getNumberOfOrders());
+        thereIsAnOpenOrder = true;
+    }
+    
+    @CliCommand(value="addFood", help="(*! createOrder must be executed first !*) "
+                                    + "Add food to the order instance")
+    public void addFood(
+        @CliOption(key = {"id"}, mandatory = true) final String id,
+        @CliOption(key = {"quantity"}, mandatory = false, help="if not given it will be 1",
+                            specifiedDefaultValue="1") final String quantity){
+        
+        orderitem = new OrderItem(id, Integer.parseInt(quantity));
+        orderinstance.addOrderItem(orderitem);
+        thereIsFoodInTheOrder = true;
+    }
+    
+    @CliCommand(value="showOrder", help="(*! createOrder must be executed first !*) " +
+                                    "Showing the current customer's order")
+    public String showOrder(){
+        return orderinstance.toString();
+    }
+    
+    @CliCommand(value="submitOrder", help="Submitting the customer's order")
+    public String submitOrder(){
+        thereIsAnOpenOrder = false;
+        thereIsFoodInTheOrder = false;
+        ordertaker.addOrder(orderinstance);
+        return customer+"'s order submitted";
+    }
+    
+    @CliCommand(value="listOrders", help="List the orders, return blank line if there is no order")
+    public String listOrders(){
+        return ordertaker.getOrderrepo().getOrderIntances().isEmpty() ? "" : ordertaker.getOrderrepo().toString();
+    }
 }
