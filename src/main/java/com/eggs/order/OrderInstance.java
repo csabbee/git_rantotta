@@ -9,7 +9,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.eggs.domain.Address;
@@ -19,6 +20,8 @@ import com.eggs.domain.Address;
  *
  */
 @Component
+@Scope("prototype")
+@Lazy
 public class OrderInstance {
     @NotNull @Length(min=10,max=40)
     private String customer;
@@ -26,7 +29,8 @@ public class OrderInstance {
     private Map<String, OrderItem> items = new HashMap<String, OrderItem>();
     private final Logger logger = LoggerFactory.getLogger(OrderInstance.class);
 
-    @Autowired
+    public OrderInstance(){}
+    
     public OrderInstance(String customer, Address delivery) {
         this.customer = customer;
         this.delivery = delivery;
