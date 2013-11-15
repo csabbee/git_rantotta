@@ -45,4 +45,8 @@ public class OrderTaker {
     public void addOrder(OrderInstance orderinstance){
         orderrepo.getOrderrepo().add(orderinstance);
     }
+
+    public OrderRepository getOrderrepo() {
+        return orderrepo;
+    }
 }
