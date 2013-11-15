@@ -26,14 +26,16 @@ public class OrderInstance {
     @NotNull @Length(min=10,max=40)
     private String customer;
     private Address delivery;
+    private final int id;
     private Map<String, OrderItem> items = new HashMap<String, OrderItem>();
     private final Logger logger = LoggerFactory.getLogger(OrderInstance.class);
 
-    public OrderInstance(){}
+    //public OrderInstance(){}
     
-    public OrderInstance(String customer, Address delivery) {
+    public OrderInstance(String customer, Address delivery, int id) {
         this.customer = customer;
         this.delivery = delivery;
+        this.id = id;
     }
     public String getCustomer() {
         return customer;
@@ -71,6 +73,6 @@ public class OrderInstance {
     }
     @Override
     public String toString() {
-        return String.format(" %-20s%n %-20s%n items:%n %s",customer,delivery,items);
+        return String.format(" orderid:%-2s%n %-20s%n %-20s%n items:%n %s",id,customer,delivery,items);
     }
 }
