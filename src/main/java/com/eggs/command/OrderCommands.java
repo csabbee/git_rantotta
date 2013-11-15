@@ -1,5 +1,12 @@
 package com.eggs.command;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -8,6 +15,9 @@ import org.springframework.shell.core.annotation.CliAvailabilityIndicator;
 import org.springframework.shell.core.annotation.CliCommand;
 import org.springframework.shell.core.annotation.CliOption;
 import org.springframework.stereotype.Component;
+import org.yaml.snakeyaml.TypeDescription;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 import com.eggs.configuration.MenuConfiguration;
 import com.eggs.domain.Address;
@@ -56,6 +66,10 @@ public class OrderCommands implements CommandMarker {
         return thereIsFoodInTheOrder ? true : false;
     }
     
+    @CliAvailabilityIndicator({"saveOrderRepository"})
+    public boolean isSaveOrderRepositoryAvailable(){
+        return ordertaker.getOrderrepo().getOrderIntances().isEmpty() ? false : true;
+    }
     
     @CliCommand(value="listMenus", help="List the available menus")
     public String listMenus(){
@@ -76,7 +90,7 @@ public class OrderCommands implements CommandMarker {
             return address.toString();
     }
     
-    @CliCommand(value="setCustomer", help="Setting the customer's name")
+    @CliCommand(value="setCustomer", help="Sets the customer's name")
     public String customer(
             @CliOption(key = {"name"}, mandatory = true) final String name){
         customer = name;
@@ -85,15 +99,15 @@ public class OrderCommands implements CommandMarker {
     }
     
     @CliCommand(value="createOrder", help="(*! setAddress and setCustomer must be executed first. "
-                                    + " Will fail if there is an open order already !*) - " 
+                                    + "Won't run if there is an open order already !*) - " 
                                     + "Creates the order instance")
-    public void order(){       
+    public void createOrder(){       
         orderinstance = new OrderInstance(customer, address, ordertaker.getNumberOfOrders());
         thereIsAnOpenOrder = true;
     }
     
     @CliCommand(value="addFood", help="(*! createOrder must be executed first !*) "
-                                    + "- Add food to the order instance")
+                                    + "- Adds food to the order instance")
     public void addFood(
         @CliOption(key = {"id"}, mandatory = true) final String id,
         @CliOption(key = {"quantity"}, mandatory = false, help="if not given it will be 1",
@@ -105,12 +119,12 @@ public class OrderCommands implements CommandMarker {
     }
     
     @CliCommand(value="showOrder", help="(*! createOrder must be executed first !*) " +
-                                    "- Showing the current customer's order")
+                                    "- Shows the current customer's order")
     public String showOrder(){
         return orderinstance.toString();
     }
     
-    @CliCommand(value="submitOrder", help="Submitting the customer's order")
+    @CliCommand(value="submitOrder", help="Submits the customer's order")
     public String submitOrder(){
         thereIsAnOpenOrder = false;
         thereIsFoodInTheOrder = false;
@@ -118,7 +132,7 @@ public class OrderCommands implements CommandMarker {
         return customer+"'s order submitted";
     }
     
-    @CliCommand(value="listOrders", help="List the orders, return blank line if there is no order")
+    @CliCommand(value="listOrders", help="Lists the orders, return blank line if there is no order")
     public String listOrders(){
         return ordertaker.getOrderrepo().getOrderIntances().isEmpty() ? "" : orderprinter.printOrders();
     }
@@ -131,5 +145,40 @@ public class OrderCommands implements CommandMarker {
         OrderInstance oi = ordertaker.findOrderInstance(id);
         oi.setOrderstate(orderstate);
         return "customer: "+oi.getCustomer();
+    }
+    
+    @CliCommand(value="saveOrderRepository", help="Saves the current OrderRepository")
+    public void saveOrderRepository(){
+        Yaml yaml = new Yaml();
+        String yamlOutput = yaml.dumpAll(ordertaker.getOrderrepo().getOrderIntances().iterator());
+        File file = new File("orderrepo.yaml");
+        try {
+            FileWriter filewriter = new FileWriter(file, true);
+            BufferedWriter bufferedwriter = new BufferedWriter(filewriter);
+            bufferedwriter.append(yamlOutput);
+            bufferedwriter.close();
+            System.out.format("OrderRepository saved!%n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @CliCommand(value="loadOrderRepository", help="Loads the OrderRepository")
+    public void loadOrderRepository(){
+        Constructor constructor = new Constructor(OrderInstance.class);
+        TypeDescription orderInstanceDescription = new TypeDescription(OrderInstance.class);
+        orderInstanceDescription.putMapPropertyType("items", String.class, OrderItem.class);
+        constructor.addTypeDescription(orderInstanceDescription);
+        Yaml yaml = new Yaml(constructor);
+        try {
+            InputStream input = new FileInputStream(new File("orderrepo.yaml"));
+            Iterable<Object> iter = yaml.loadAll(input);
+            for (Object object : iter) {
+                ordertaker.getOrderrepo().getOrderIntances().add((OrderInstance)object);
+            }
+            System.out.format("OrderRepository loaded!%n");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

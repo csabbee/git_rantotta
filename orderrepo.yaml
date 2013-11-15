@@ -1,0 +1,17 @@
+!!com.eggs.order.OrderInstance
+customer: Valyi Csaba
+delivery: {city: Budapest, street: Juhasz Gyula utca 48, zip: '1039'}
+id: 1
+items:
+  k4: {foodId: k4, quantity: 10}
+  m1: {foodId: m1, quantity: 5}
+  k2: {foodId: k2, quantity: 1}
+orderstate: PENDING
+--- !!com.eggs.order.OrderInstance
+customer: Takacs Peter
+delivery: {city: Budapest, street: Futo utca 47, zip: '1087'}
+id: 2
+items:
+  m1: {foodId: m1, quantity: 5}
+  k2: {foodId: k2, quantity: 30}
+orderstate: PENDING

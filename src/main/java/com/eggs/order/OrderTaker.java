@@ -34,13 +34,14 @@ public class OrderTaker {
     }
 
     public String printMenus(){
-        String menus = "";
+        StringBuilder menus = new StringBuilder();
         for (MenuRepository repo : repos) {
             for (Menu menu : repo.getAllmenu()) {
-                menus+=String.format("%s %n", menu);
+                menus.append(String.format("%s%n", menu.getRestaurant()));
+                menus.append(String.format("%s %n", menu));
             }
         }
-        return menus;
+        return String.format("%s", menus);
     }
     
     public void addOrder(OrderInstance orderinstance){

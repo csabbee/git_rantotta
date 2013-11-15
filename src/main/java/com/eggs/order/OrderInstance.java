@@ -2,7 +2,6 @@ package com.eggs.order;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -26,12 +25,12 @@ public class OrderInstance {
     @NotNull @Length(min=10,max=40)
     private String customer;
     private Address delivery;
-    private final int id;
+    private int id;
     private OrderState orderstate;
     private Map<String, OrderItem> items = new HashMap<String, OrderItem>();
     private final Logger logger = LoggerFactory.getLogger(OrderInstance.class);
 
-    //public OrderInstance(){}
+    public OrderInstance(){}
     
     public OrderInstance(String customer, Address delivery, int id) {
         this.customer = customer;
@@ -73,14 +72,6 @@ public class OrderInstance {
     public void setItems(Map<String, OrderItem> items) {
         this.items = items;
     }
-    @Override
-    public String toString() {
-        StringBuilder orderitems = new StringBuilder();
-        for (OrderItem orderitem : items.values()) {
-            orderitems.append(orderitem);
-        }
-        return String.format(" orderid:%-2s%n customer:%-20s%n delivery address:%-20s%n items:%n%s",id,customer,delivery,orderitems);
-    }
     public OrderState getOrderstate() {
         return orderstate;
     }
@@ -89,5 +80,16 @@ public class OrderInstance {
     }
     public int getId() {
         return id;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+    @Override
+    public String toString() {
+        StringBuilder orderitems = new StringBuilder();
+        for (OrderItem orderitem : items.values()) {
+            orderitems.append(orderitem);
+        }
+        return String.format(" orderid:%-2s%n customer:%-20s%n delivery address:%-20s%n items:%n%s",id,customer,delivery,orderitems);
     }
 }
