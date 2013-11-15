@@ -22,6 +22,7 @@ public class OrderTaker {
     //private List<OrderInstance> orders = new ArrayList<OrderInstance>();
     private Logger logger = LoggerFactory.getLogger(OrderTaker.class);
     private List<MenuRepository> repos = new ArrayList<MenuRepository>();
+    private int numberOfOrders = 1; 
     @Autowired
     private OrderRepository orderrepo;
     
@@ -44,9 +45,14 @@ public class OrderTaker {
     
     public void addOrder(OrderInstance orderinstance){
         orderrepo.getOrderIntances().add(orderinstance);
+        numberOfOrders++;
     }
 
     public OrderRepository getOrderrepo() {
         return orderrepo;
+    }
+
+    public Integer getNumberOfOrders() {
+        return numberOfOrders;
     }
 }
