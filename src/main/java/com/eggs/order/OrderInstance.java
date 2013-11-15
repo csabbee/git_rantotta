@@ -27,6 +27,7 @@ public class OrderInstance {
     private String customer;
     private Address delivery;
     private final int id;
+    private OrderState orderstate;
     private Map<String, OrderItem> items = new HashMap<String, OrderItem>();
     private final Logger logger = LoggerFactory.getLogger(OrderInstance.class);
 
@@ -36,6 +37,7 @@ public class OrderInstance {
         this.customer = customer;
         this.delivery = delivery;
         this.id = id;
+        this.orderstate = OrderState.pending;
     }
     public String getCustomer() {
         return customer;
@@ -74,5 +76,11 @@ public class OrderInstance {
     @Override
     public String toString() {
         return String.format(" orderid:%-2s%n %-20s%n %-20s%n items:%n %s",id,customer,delivery,items);
+    }
+    public OrderState getOrderstate() {
+        return orderstate;
+    }
+    public void setOrderstate(OrderState orderstate) {
+        this.orderstate = orderstate;
     }
 }
