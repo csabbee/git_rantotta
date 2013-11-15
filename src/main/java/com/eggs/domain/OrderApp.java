@@ -13,6 +13,8 @@ public class OrderApp {
         
         OrderInstance oi = ctx.getBean(OrderInstance.class);
         System.out.format("====%nOrder:%n%s%n====", oi);
+        @SuppressWarnings("unused")
         OrderTaker ordetaker = new OrderTaker();
+        ctx.close();
     }
 }

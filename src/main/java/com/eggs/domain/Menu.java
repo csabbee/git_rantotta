@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class Menu {
     private Restaurant restaurant;
+    @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(Menu.class);
 
     
@@ -28,7 +29,7 @@ public class Menu {
     }
 
     public List<Food> getFoodList() {
-        ArrayList list = new ArrayList(foodMap.values());
+        ArrayList<Food> list = new ArrayList<Food>(foodMap.values());
         return list;
     }
 

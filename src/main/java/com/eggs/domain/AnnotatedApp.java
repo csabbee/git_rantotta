@@ -13,6 +13,7 @@ public class AnnotatedApp {
         
         MenuPrinter printer = ctx.getBean(MenuPrinter.class);
         printer.printMenus();
+        ctx.close();
     }
 
 }

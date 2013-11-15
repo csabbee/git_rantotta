@@ -20,6 +20,7 @@ import com.github.lalyos.jfiglet.FigletFont;
 @Qualifier("ascii")
 public class AsciiArtPrinter extends BaseMenuPrinter {
 
+    @SuppressWarnings("unused")
     private Logger logger = LoggerFactory.getLogger(AsciiArtPrinter.class);
     
     @Value("${menu.lang:en}")

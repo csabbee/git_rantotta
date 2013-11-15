@@ -17,6 +17,7 @@ import com.eggs.order.OrderInstance;
 public class OrderRepository {
 
     private List<OrderInstance> orderintances = new ArrayList<OrderInstance>();
+    @SuppressWarnings("unused")
     private final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
     
     public OrderRepository(){}

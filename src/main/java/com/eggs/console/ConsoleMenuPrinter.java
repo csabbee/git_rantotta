@@ -19,6 +19,7 @@ import com.eggs.domain.Menu;
 @Qualifier("console")
 public class ConsoleMenuPrinter extends BaseMenuPrinter {
     
+    @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(ConsoleMenuPrinter.class);
     
     @Value("${menu.lang:en}")

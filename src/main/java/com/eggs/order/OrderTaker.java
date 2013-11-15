@@ -20,6 +20,7 @@ import com.eggs.repo.order.OrderRepository;
 public class OrderTaker {
 
     //private List<OrderInstance> orders = new ArrayList<OrderInstance>();
+    @SuppressWarnings("unused")
     private Logger logger = LoggerFactory.getLogger(OrderTaker.class);
     private List<MenuRepository> repos = new ArrayList<MenuRepository>();
     private int numberOfOrders = 1; 
