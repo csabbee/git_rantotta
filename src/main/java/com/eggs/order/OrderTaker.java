@@ -55,4 +55,13 @@ public class OrderTaker {
     public Integer getNumberOfOrders() {
         return numberOfOrders;
     }
+    
+    public OrderInstance findOrderInstance(int id){
+        for (OrderInstance orderinstance : orderrepo.getOrderIntances()) {
+            if(orderinstance.getId() == id){
+                return orderinstance;
+            }
+        }
+        return new OrderInstance("not valid", null, Integer.MAX_VALUE);
+    }
 }
