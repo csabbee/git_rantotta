@@ -15,30 +15,30 @@ import com.eggs.order.OrderInstance;
 @Lazy
 public class OrderRepository {
 
-    private List<OrderInstance> orderrepo = new ArrayList<OrderInstance>();
+    private List<OrderInstance> orderintances = new ArrayList<OrderInstance>();
     private final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
     
     @Autowired
     public OrderRepository(OrderInstance... orderinstances){
         for (OrderInstance orderInstance : orderinstances) {
-            orderrepo.add(orderInstance);
+            this.orderintances.add(orderInstance);
         }
     }
 
-    public List<OrderInstance> getOrderrepo() {
-        return orderrepo;
+    public List<OrderInstance> getOrderIntances() {
+        return orderintances;
     }
 
-    public void setOrderrepo(List<OrderInstance> orderrepo) {
-        this.orderrepo = orderrepo;
+    public void setOrderInstances(List<OrderInstance> orderinstances) {
+        this.orderintances = orderinstances;
     }
 
     @Override
     public String toString() {
-        StringBuilder orderinstances = new StringBuilder();
-        for (OrderInstance orderinstance : orderrepo) {
-            orderinstances.append(orderinstance);
+        StringBuilder everyorderinstance = new StringBuilder();
+        for (OrderInstance orderinstance : orderintances) {
+            everyorderinstance.append(orderinstance);
         }
-        return orderinstances.toString();
+        return everyorderinstance.toString();
     }
 }
