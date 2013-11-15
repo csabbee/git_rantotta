@@ -11,7 +11,7 @@ public class VegetarianMenuSelector implements ApplicationListener<MenuEvent>{
     private static final Logger logger = LoggerFactory.getLogger(VegetarianMenuSelector.class);
     public void onApplicationEvent(MenuEvent event) {
         for (Food food : event.getMenu().getFoodList()) {
-            logger.error("pleace decide weather {} is vegetarian !", food.getName());    
+            logger.error("pleace decide whether {} is vegetarian !", food.getName());    
         }
     }
 }
