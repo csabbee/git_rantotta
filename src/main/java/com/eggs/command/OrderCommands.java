@@ -59,12 +59,12 @@ public class OrderCommands implements CommandMarker {
     }
     
     
-    @CliCommand(value="listMenus", help="List the available menus")
+    @CliCommand(value="listMenus", help="Lists the available menus")
     public String listMenus(){
         return ordertaker.printMenus();
     }
     
-    @CliCommand(value="setAddress", help="Setting the address")
+    @CliCommand(value="setAddress", help="Sets the address")
     public String address(
         @CliOption(key = {"zip"},    mandatory = true) final String zip,
         @CliOption(key = {"city"},   mandatory = true) final String city,
@@ -78,7 +78,7 @@ public class OrderCommands implements CommandMarker {
             return address.toString();
     }
     
-    @CliCommand(value="setCustomer", help="Setting the customer's name")
+    @CliCommand(value="setCustomer", help="Sets the customer's name")
     public String customer(
             @CliOption(key = {"name"}, mandatory = true) final String name){
         customer = name;
@@ -95,7 +95,7 @@ public class OrderCommands implements CommandMarker {
     }
     
     @CliCommand(value="addFood", help="(*! createOrder must be executed first !*) "
-                                    + "- Add food to the order instance")
+                                    + "- Adds food to the order instance")
     public void addFood(
         @CliOption(key = {"id"}, mandatory = true) final String id,
         @CliOption(key = {"quantity"}, mandatory = false, help="if not given it will be 1",
@@ -107,12 +107,12 @@ public class OrderCommands implements CommandMarker {
     }
     
     @CliCommand(value="showOrder", help="(*! createOrder must be executed first !*) " +
-                                    "- Showing the current customer's order")
+                                    "- Shows the current customer's order")
     public String showOrder(){
         return orderinstance.toString();
     }
     
-    @CliCommand(value="submitOrder", help="Submitting the customer's order")
+    @CliCommand(value="submitOrder", help="Submits the customer's order")
     public String submitOrder(){
         thereIsAnOpenOrder = false;
         thereIsFoodInTheOrder = false;
@@ -120,7 +120,7 @@ public class OrderCommands implements CommandMarker {
         return customer+"'s order submitted";
     }
     
-    @CliCommand(value="listOrders", help="List the orders, return blank line if there is no order")
+    @CliCommand(value="listOrders", help="Lists the orders, return blank line if there is no order")
     public String listOrders(){
         return ordertaker.getOrderrepo().getOrderIntances().isEmpty() ? "" : orderprinter.printOrders();
     }
