@@ -5,23 +5,27 @@
   xmlns:c="http://www.springframework.org/schema/c"
   xmlns:util="http://www.springframework.org/schema/util"
   xmlns:context="http://www.springframework.org/schema/context"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
-    >
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <context:component-scan base-package="com.eggs" />
+    <aop:aspectj-autoproxy />
+    <context:component-scan base-package="com.eggs.domain" />
     <context:property-placeholder location="classpath:breakfast.properties"/>		
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="headers" />	
 
     <beans profile="default">
-      <bean class="com.eggs.console.ConsoleMenuPrinter" />
-      <bean  class="com.eggs.impl.InmemoryMenuRepositoryReader" /> 
+          <context:component-scan base-package="com.eggs.console" />
+          <context:component-scan base-package="com.eggs.impl" />
     </beans>
     
     <beans profile="ascii">
-      <bean class="com.eggs.ascii.AsciiArtPrinter" />
-      <bean class="com.eggs.impl.YamlFileMenuRepositoryReader"></bean>
+          <context:component-scan base-package="com.eggs.ascii" />
+          <context:component-scan base-package="com.eggs.yaml" />
     </beans>
 	
+  
+  
 </beans>
