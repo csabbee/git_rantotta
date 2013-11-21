@@ -1,5 +1,10 @@
 package com.eggs.domain;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
 public class Food {
 
     private String id;
@@ -8,6 +13,7 @@ public class Food {
     private float price;
     private int calories;
 
+    public Food() {}
     public Food(String id, String name, float price, int calories) {
         super();
         this.id = id;
@@ -54,10 +60,6 @@ public class Food {
 
     public void setCalories(int calories) {
         this.calories = calories;
-    }
-
-    public Food() {
-
     }
 
     public Food(String id, String name, float price) {

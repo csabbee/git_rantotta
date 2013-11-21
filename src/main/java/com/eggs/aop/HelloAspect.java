@@ -1,5 +1,6 @@
 package com.eggs.aop;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -12,8 +13,12 @@ public class HelloAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(HelloAspect.class);
     
-    @Before("execution( * print*(..) )")
-    public void hello() {
-        logger.warn("Hello AOP");
+    @Before("execution( * get*(..) )")
+    public void hello(JoinPoint joinPoint) {
+        logger.warn("Hello AOP method: {}", joinPoint.getSignature());
+        Object[] args = joinPoint.getArgs();
+        for (Object object : args) {
+            logger.warn(" next ARG: {}", object);
+        }
     }
 }

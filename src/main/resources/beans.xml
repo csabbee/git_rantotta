@@ -18,12 +18,12 @@
     <context:property-placeholder location="classpath:breakfast.properties"/>		
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="headers" />	
 
-    <beans profile="not-default">
+    <beans profile="default">
           <context:component-scan base-package="com.eggs.console" />
           <context:component-scan base-package="com.eggs.impl" />
     </beans>
     
-    <beans profile="default">
+    <beans profile="not-default">
           <context:component-scan base-package="com.eggs.ascii" />
           <context:component-scan base-package="com.eggs.yaml" />
     </beans>

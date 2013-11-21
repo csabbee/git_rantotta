@@ -30,6 +30,7 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
     @Autowired
     public ConsoleMenuPrinter(MenuRepository menuRepository) {
         super(menuRepository);
+        logger.warn("REPO CLASS= {}", menuRepository.getClass());
     }
 
     @Override
@@ -55,7 +56,7 @@ public class ConsoleMenuPrinter extends BaseMenuPrinter {
         System.out.format(" %-20s | %10s %n", nameHeader, priceHeader);
         
         for (Food food : menu.getFoodList()) {
-            System.out.format(" %-20s | %10.2f %n", food.getName(), food.getPrice());
+            System.out.format(" %-20s | %10.2f {%s} %n", food.getName(), food.getPrice(), food.getClass());
         }
     }
 }
