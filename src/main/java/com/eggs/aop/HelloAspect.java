@@ -12,7 +12,7 @@ public class HelloAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(HelloAspect.class);
     
-    @Before("execution( * com.eggs.domain.*.set*(..) )")
+    @Before("execution( * print*(..) )")
     public void hello() {
         logger.warn("Hello AOP");
     }
