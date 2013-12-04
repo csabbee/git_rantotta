@@ -3,6 +3,8 @@ package com.eggs.domain;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.eggs.aop.Retry;
+
 @Component
 @Scope("prototype")
 public class Food {
@@ -45,8 +47,11 @@ public class Food {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    @Retry
     public float getPrice() {
+        if(Math.random() < 0.2d){
+            throw new RuntimeException();
+        }
         return price;
     }
 

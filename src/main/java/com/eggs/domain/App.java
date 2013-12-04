@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.eggs.console.ConsoleMenuPrinter;
-
 public class App {
     private static Logger logger = LoggerFactory.getLogger(App.class);
 
@@ -15,6 +13,8 @@ public class App {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
         
         MenuPrinter printer = ctx.getBean(MenuPrinter.class);
-        printer.printMenus();        
+        printer.printMenus();
+        printer.printMenus();
+        printer.printMenus();
     }
 }

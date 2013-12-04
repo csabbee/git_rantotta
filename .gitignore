@@ -4,3 +4,7 @@
 target
 
 .springBeans
+dependency-reduced-pom.xml
+spring-shell.log
+test.txt
+testFile.log

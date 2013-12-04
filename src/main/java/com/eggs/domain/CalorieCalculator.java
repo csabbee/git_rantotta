@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class CalorieCalculator implements ApplicationListener<FoodEvent> {
 
     private static final Logger logger = LoggerFactory.getLogger(CalorieCalculator.class);
-    
+    //@Retry
     public void onApplicationEvent(FoodEvent event) {
         logger.warn("Please calculate calorie for: {}", event.getFood().getName());
     }

@@ -5,10 +5,12 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
+@Order(2)
 public class TraceAspect {
 
     private final Logger logger = LoggerFactory.getLogger(TraceAspect.class);
@@ -23,8 +25,7 @@ public class TraceAspect {
             long endTime = System.nanoTime();
             logger.warn("ellapsed time {} [ns]", (endTime-startTime));
         } catch (Throwable e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return retValue;
     }

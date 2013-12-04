@@ -27,9 +27,20 @@
   
   <logger name="com.eggs" level="warn" />
   <logger name="com.eggs.aop" level="warn" additivity="false">
-    <appender-ref ref="FILE"/>
+    <!-- <appender-ref ref="STDOUT" /> -->
   </logger>
   <logger name="com.eggs.aop.TraceAspect" level="warn">
+    <!-- <appender-ref ref="STDOUT" /> -->
+  </logger>
+  <logger name="com.eggs.aop.HelloAspect" level="warn">
+    <!-- <appender-ref ref="STDOUT" /> -->
+  </logger>
+  <logger name="com.eggs.aop.CacheAspect" level="warn">
     <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
+  </logger>
+  <logger name="com.eggs.aop.RetryAspect" level="warn">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
   </logger>
 </configuration>
